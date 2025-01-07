@@ -25,9 +25,21 @@ SECRET_KEY = 'django-insecure-pqv%pn&&47i71hx#vkt7(d!0d$asx^*-z!_u3w$sg&)!s9@c58
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    'flirtparadise-production.up.railway.app',
+    '127.0.0.1',
+    'localhost'
+]
 
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://flirtparadise-production.up.railway.app'
+]
+
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
 
 
 # Application definition
