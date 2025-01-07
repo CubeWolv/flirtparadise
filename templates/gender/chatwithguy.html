@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlirtParadise Chat</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #1c1c1c;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        #chat-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: #2d2d2d;
+            border-radius: 15px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            height: 70vh;
+            justify-content: flex-end;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        #chat-box {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.5;
+            scroll-behavior: smooth; /* Smooth scroll */
+        }
+
+        #chat-form {
+            display: flex;
+            align-items: center;
+        }
+
+     input[type="text"] {
+    background-color: #444;
+    border: 1px solid #555;  /* Subtle border */
+    border-radius: 25px;
+    color: #fff;
+    padding: 12px 20px;
+    width: 100%;
+    font-size: 16px;
+    margin-right: 12px;
+    outline: none;
+    box-shadow: none; /* Default state has no shadow */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+
+input[type="text"]:focus {
+    border-color: #8e44ad; /* Soft border color */
+    box-shadow: 0 0 8px rgba(138, 44, 173, 0.5); /* Subtle soft glow */
+    background-color: #555; /* Slight background change on focus */
+}
+
+
+
+        button {
+            background-color: #8e44ad;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #9b59b6;
+        }
+
+      .loading {
+    font-size: 30px; /* Increase dot size */
+    color: #aaa;
+    display: inline-block;
+    letter-spacing: 5px; /* Add space between the dots */
+    animation: typing 1.5s steps(3, end) infinite;
+}
+
+@keyframes typing {
+    0% {
+        content: '';
+    }
+    33% {
+        content: '.';
+    }
+    66% {
+        content: '..';
+    }
+    100% {
+        content: '...';
+    }
+}
+
+.message.bot.typing {
+    font-size: 30px; /* Ensure the typing dots in the bot message are large too */
+    color: #aaa; 
+    letter-spacing: 5px; /* Spaced out dots */
+    background-color: transparent;
+    animation: typing 1.5s steps(3, end) infinite;
+}
+
+
+        .message {
+            margin: 10px 0;
+            font-size: 16px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            text-align: right;
+            color: white;
+            background-color: #5e2a8c;
+            border-radius: 10px;
+            padding: 10px 15px;
+            margin-left: auto;
+        }
+
+        .message.bot {
+            text-align: left;
+            color: #fff;
+            background-color: #444;
+            border-radius: 10px;
+            padding: 10px 15px;
+        }
+.profile-info {
+    margin-top:50px;
+    margin-bottom: 20px;
+}
+
+.profile-info img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+   
+}
+.the-name-of-chater {
+    font-size: 70px;
+    color:limegreen;
+  
+}
+.online-container{
+   margin-top:-40px;
+}
+  .navbar-brand{
+text-align: left;
+font-size: 20px;
+color:white;
+text-decoration: none;
+position: absolute;
+left:20px;
+top:20px;
+  }
+    </style>
+</head>
+<body>
+   <a class="navbar-brand" href="{% url 'girls' %}">← Home</a> 
+    <!-- Please put profile picture of the person clicked here and also the name --->
+  <!-- Profile Picture and Name -->
+  
+<div class="profile-info">
+    <center>
+        <img src="{{ guy.pictures.first.image.url }}" alt="{{ guy.name }}'s Profile Picture" width="150" height="150">
+    </center>
+    <div class="online-container">
+        <h3>{{ guy.name }}<span class="the-name-of-chater"> .</span></h3>
+    </div>
+</div>
+
+<!-- Chat Box -->
+<div id="chat-container">
+    <div id="chat-box">
+        <div id="chat-response">
+            <!-- Chat messages will appear here -->
+        </div>
+    </div>
+    <form id="chat-form">
+        <input type="text" id="user_input" name="user_input" placeholder="Send a message..." />
+        <button type="submit" id="send-btn" disabled>Send</button>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Enable/Disable button based on input field
+        $('#user_input').on('input', function () {
+            let userInput = $(this).val();
+            if (userInput.trim() === '') {
+                $('#send-btn').attr('disabled', true);
+            } else {
+                $('#send-btn').attr('disabled', false);
+            }
+        });
+
+        $('#chat-form').on('submit', function (e) {
+            e.preventDefault();
+
+            // Get user input
+            let userMessage = $('#user_input').val();
+            if (userMessage.trim() === '') return;
+
+            // Append user message to chat box
+            $('#chat-box').append('<div class="message user">' + userMessage + '</div>');
+            $('#user_input').val(''); // Clear input box
+            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+
+            // Show loading dots dynamically just before bot response
+            const loadingElement = $('<div class="message bot typing">...</div>');
+            $('#chat-box').append(loadingElement);
+            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+
+            // Send request to the backend
+            $.ajax({
+                type: 'POST',
+                url: window.location.href,  // Post to the current URL (chat room)
+                data: {
+                    user_input: userMessage,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function (response) {
+                    // Remove loading dots after response
+                    loadingElement.remove();
+
+                    // Append bot response to chat box
+                    $('#chat-box').append('<div class="message bot">' + response.response + '</div>');
+                    $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                },
+                error: function (response) {
+                    loadingElement.remove();
+                    $('#chat-box').append('<div class="message bot">Error: ' + response.responseText + '</div>');
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

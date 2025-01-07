@@ -1,0 +1,338 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escort Details</title>
+    <link rel="stylesheet" href="{% static 'css/viewperson.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Profile Container */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Profile Images Section */
+.profile-images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.main-image img {
+    width: 100%;
+    max-height: 500px;  /* Limit the max height for better control */
+    object-fit: contain; /* Ensure the image fits within the container without stretching */
+    border-radius: 10px;
+}
+
+.thumbnail-images {
+    display: flex;
+    gap: 10px;
+    overflow-x: none;
+}
+
+.thumbnail-images img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* Ensure thumbnails fit without distortion */
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.thumbnail-images img:hover {
+    transform: scale(1.1);
+}
+
+/* Profile Details Section */
+.profile-details {
+    max-width: 600px;
+    text-align: left;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.name {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.location {
+    font-size: 1rem;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.call-btn, .whatsapp-btn {
+    flex: 1;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Call Button Styling */
+.call-btn {
+    background-color: #ff4f00; /* Vibrant orange for modern look */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.call-btn:hover {
+    background-color: #ff6f33; /* Slightly lighter shade on hover */
+}
+
+.call-btn .hidden-phone {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+/* WhatsApp Button Styling */
+.whatsapp-btn {
+    background-color: #25d366; /* WhatsApp green */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.whatsapp-btn:hover {
+    background-color: #128c7e; /* Darker green for hover */
+}
+
+@media (max-width: 768px) {
+    .call-btn, .whatsapp-btn {
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
+
+.info h2 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.info p, .info ul {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info ul li {
+    margin-bottom: 10px;
+}
+
+.info ul li strong {
+    color: #f0a500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Stack images and details vertically */
+    .profile-container {
+        flex-direction: column;
+    }
+
+    /* Full-width for profile details and images */
+    .profile-images,
+    .profile-details {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Adjust main image height for smaller screens */
+    .main-image img {
+        height: auto;
+    }
+
+    /* Thumbnail images in a scrollable row */
+    .thumbnail-images {
+        flex-wrap: nowrap;
+    }
+}
+
+/* Desktop Design (Two columns on larger screens) */
+@media (min-width: 768px) {
+    .profile-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    /* Side-by-side image and details */
+    .profile-images {
+        flex: 1;
+    }
+
+    .profile-details {
+        flex: 1;
+        max-width: 500px;
+    }
+
+}
+.mainImage {
+    width: 100%; /* Ensures it scales properly */
+    height: 400px; /* Set a default height for larger screens */
+    object-fit: cover; /* Ensures the image fills the space without distortion */
+}
+@media (max-width: 768px) {
+    #mainImage {
+             height: 250px; /* Reduce the height for mobile screens */
+        object-fit: contain; /* Ensures the image fits within the box, without being cropped */
+        display: block; /* Ensures it's treated as a block element */
+        margin-left: auto; /* Centers the image horizontally */
+        margin-right: auto; /* Ensures the image covers the space without distortion */
+    }
+}
+    </style>
+</head>
+<body>
+        <!-- Include the header -->
+    {% include 'partials/header.html' %}
+    <div class="profile-container">
+        <!-- Image Section -->
+        <div class="profile-images">
+            <div class="main-image">
+                <img src="{{ escort.pictures.first.image.url }}" alt="Main image of {{ escort.name }}" id="mainImage">
+            </div>
+            <div class="thumbnail-images">
+                {% for picture in escort.pictures.all %}
+                    <img src="{{ picture.image.url }}" alt="Thumbnail of {{ escort.name }}" class="thumbnail" onclick="changeImage('{{ picture.image.url }}')">
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Details Section -->
+<div class="profile-details">
+    <h1 class="name">{{ escort.name }}</h1>
+    <p class="age-location">
+        <span class="age">{{ escort.age }} years old</span> | 
+        <span class="location">{{ escort.city }} | {{ escort.gender }}</span>
+    </p>
+<div class="actions">
+    <button class="call-btn" id="call-btn" onclick="revealAndCopyPhoneNumber()">
+        📞 
+        <bold><span class="hidden-phone">{{ escort.phone_number|slice:":2" }}******32</span></bold>
+        <span class="full-phone" style="display:none;">{{ escort.phone_number }}</span>
+    </button>
+    <button class="whatsapp-btn">WhatsApp Me!</button>
+</div>
+
+
+
+
+
+<h5 style="color:grey;">About Me</h5>
+    <!-- About Me Section -->
+    <div class="about-box" style="border:1px solid silver;border-radius: 10px;padding:10px;margin-bottom:30px">
+        
+        <p>{{ escort.bio }}</p>
+    </div>
+
+    <!-- Services Section -->
+    <div class="services-box">
+    <h5 style="color:grey;">Services</h5>
+    {% if escort.services.exists %}
+        <ul style="list-style: none">
+            {% for service in escort.services.all %}
+                <li>{{ service.name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No services listed.</p>
+    {% endif %}
+</div>
+
+</div>
+
+    </div>
+
+    <script>
+        function changeImage(imageUrl) {
+            const mainImage = document.getElementById('mainImage');
+            mainImage.src = imageUrl;
+        }
+function revealPhoneNumber() {
+    const phoneSpan = document.querySelector('.call-btn .full-phone');
+    phoneSpan.style.display = 'inline'; // Reveal full phone number
+    const hiddenPhone = document.querySelector('.call-btn .hidden-phone');
+    hiddenPhone.style.display = 'none'; // Hide the masked phone number
+}
+
+function revealAndCopyPhoneNumber() {
+    var phoneButton = document.getElementById("call-btn");
+    var hiddenPhone = phoneButton.querySelector(".hidden-phone");
+    var fullPhone = phoneButton.querySelector(".full-phone");
+
+    // Show the full phone number
+    hiddenPhone.style.display = 'none';
+    fullPhone.style.display = 'inline-block';
+
+    // Copy the phone number to the clipboard
+    var phoneNumber = fullPhone.textContent;
+    navigator.clipboard.writeText(phoneNumber).then(function() {
+        // Change button text to "Copied!" for 3 seconds
+        var originalText = phoneButton.innerHTML;
+        phoneButton.innerHTML = "Copied!";
+        phoneButton.disabled = true;
+
+        setTimeout(function() {
+            phoneButton.innerHTML = originalText;
+            phoneButton.disabled = false;
+        }, 3000);
+    }).catch(function(error) {
+        // Handle any errors (optional)
+        console.error("Failed to copy phone number:", error);
+    });
+}
+
+
+    </script>
+
+        <!-- Include the footer -->
+    {% include 'partials/footer.html' %}
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

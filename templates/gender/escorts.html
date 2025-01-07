@@ -1,0 +1,273 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flirt Paradise | Escorts</title>
+    <!-- Bootstrap CDN -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1b1b1b, #121212); /* Dark and sleek background */
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 3rem;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+
+        }
+
+        .girl-card {
+            background-color: rgba(34, 34, 34, 0.8);
+            border: 1px solid rgba(68, 68, 68, 0.8);
+            border-radius: 12px;
+            display: inline-block;
+            margin: 15px;
+            padding: 20px;
+            width: 230px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .girl-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .girl-photo {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .girl-name {
+            margin: 12px 0;
+            font-size: 1.3rem;
+            color: #9b59b6;
+            font-weight: 500;
+        }
+
+        .girl-age {
+            font-size: 1rem;
+            color: #ddd;
+            font-weight: 300;
+        }
+
+        .btn-custom {
+            background-color: #9b59b6;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-custom:hover {
+            background-color: #7e3b8f;
+        }
+
+        .card {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img-top {
+            object-fit: cover;
+            height: 350px;
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .card-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: silver;
+            display: -webkit-box; 
+            -webkit-line-clamp: 2; /* Limits to two lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .card.shadow-lg {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .row-cols-md-4 {
+                row-cols-1;
+            }
+        }
+        .mt-5{
+            margin-bottom:50px;
+        }
+        /* Pagination Styling */
+.pagination {
+    background-color: #1c1c1c; /* Dark background */
+    border-radius: 5px; /* Slightly rounded corners */
+    padding: 10px 15px;
+    display: inline-flex; /* Align items in a row */
+    justify-content: center;
+    list-style: none; /* Remove bullet points */
+}
+
+.pagination .page-item {
+    margin: 0 5px; /* Spacing between pagination items */
+}
+
+.pagination .page-link {
+    background-color: #333; /* Darker button background */
+    border: 1px solid #444; /* Subtle border for buttons */
+    border-radius: 5px; /* Rounded buttons */
+    color: #fff; /* White text for contrast */
+    font-size: 0.9rem;
+    padding: 8px 12px; /* Comfortable padding */
+    text-decoration: none;
+    transition: all 0.3s ease; /* Smooth hover transition */
+}
+
+.pagination .page-link:hover {
+    background-color: #444; /* Slightly lighter on hover */
+    color: #9b59b6; /* Accent color for hover */
+    border-color: #555;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #9b59b6; /* Accent color for active page */
+    border-color: #9b59b6; /* Match border with background */
+    color: #fff; /* Ensure text remains visible */
+    font-weight: bold; /* Highlight active page */
+    cursor: default; /* Remove pointer effect on active page */
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: #222; /* Muted color for disabled items */
+    color: #555; /* Light gray text */
+    border-color: #333;
+    cursor: not-allowed; /* Disable pointer events */
+}
+
+.pagination .page-link svg {
+    vertical-align: middle; /* Align icons properly */
+    width: 14px;
+    height: 14px;
+    fill: currentColor; /* Match icon color with text */
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .pagination .page-link {
+        padding: 6px 10px; /* Slightly smaller padding on smaller screens */
+        font-size: 0.8rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Include the header -->
+    {% include 'partials/header.html' %}
+
+   <div class="container mt-5">
+    <h2 class="text-center mb-4">Hook Up With Sexy Girls In Kampala</h2>
+
+    <!-- Girls Display Section -->
+   <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
+    {% for escort in page_obj %}
+        <div class="col">
+            <div class="card shadow-lg border-0 rounded position-relative">
+                {% if escort.pictures.first %}
+                    <a href="{% url 'view_person' pk=escort.pk %}">
+                        <img src="{{ escort.pictures.first.image.url }}" class="card-img-top" alt="{{ escort.name }}">
+                    </a>
+                {% endif %}
+                <div class="card-overlay">
+                    <h5 class="card-title">
+                        <a href="{% url 'view_person' pk=escort.pk %}" class="text-decoration-none text-white">{{ escort.name }}</a>
+                    </h5>
+                    <p class="card-text">{{ escort.bio|slice:":200" }}...</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+<nav>
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+            </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+</div>
+
+    <!-- Include the footer -->
+    {% include 'partials/footer.html' %}
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
