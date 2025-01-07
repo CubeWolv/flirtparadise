@@ -217,6 +217,101 @@
     <h2 class="text-center mb-4">Chat With Horny Guys In Kampala</h2>
     <p style="margin-bottom:50px;">Feeling lonely? Get nudes and talk to a horny men who’s ready to spice up your day and bring your fantasies to life. Don’t wait—your escape is just a click away! . <b>Stay Anonymous</b></p>
 
+
+<nav class="nav-container">
+    <ul class="nav-bar">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'escorts' %}">Escorts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'chat' %}">Sexting Ai</a>
+        </li>
+    {% if subscription_status == "active" %}
+      
+    {% elif subscription_status == "expired" %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'flutterwave_payment' %}">Get Premium Content</a>
+        </li>
+    {% else %}
+       <li class="nav-item">
+            <a class="nav-link" href="{% url 'flutterwave_payment' %}">Get Premium Content</a>
+        </li>
+    {% endif %}
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'girls' %}">Chat with Girls</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'guys' %}">chat with Guys</a>
+        </li>
+    </ul>
+</nav>
+
+<!-- CSS -->
+<style>
+    /* Container for the navigation bar */
+    .nav-container {
+        width: 100%; /* Full width */
+        background-color: #000; /* Dominant black background */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Dark shadow for depth */
+        z-index: 1000; /* Above all content */
+        margin-bottom:20px;
+        border-radius: 5px
+    }
+
+    /* Navigation bar */
+    .nav-bar {
+        display: flex; /* Horizontal layout */
+        justify-content: center; /* Center the items */
+        align-items: center; /* Vertically center items */
+        list-style: none; /* Remove bullets */
+        margin: 0;
+        padding: 0;
+        height: 70px; /* Adjust height for better spacing */
+    }
+
+    /* Navigation items */
+    .nav-item {
+        margin: 0 15px; /* Spacing between items */
+    }
+
+    /* Navigation links */
+    .nav-link {
+        text-decoration: none; /* Remove underline */
+        color: #b3b3b3; /* Light gray text for contrast */
+        font-size: 16px; /* Font size */
+        font-weight: 500; /* Medium weight for modern look */
+        text-transform: uppercase; /* Uppercase text */
+        padding: 10px 15px; /* Spacing around links */
+        transition: all 0.3s ease; /* Smooth hover effects */
+        border-radius: 4px; /* Subtle rounded corners */
+    }
+
+    /* Hover and active state */
+    .nav-link:hover {
+        color: #9c27b0; /* Purple text hover */
+        background-color: rgba(255, 255, 255, 0.1); /* Slight white overlay */
+    }
+
+    .nav-link:active {
+        color: #e91e63; /* Brighter accent color when active */
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 768px) {
+        .nav-bar {
+            flex-direction: column; /* Stack items vertically */
+            height: auto; /* Adjust height */
+        }
+
+        .nav-link {
+            width: 100%; /* Full width links */
+            text-align: center; /* Center text */
+        }
+    }
+</style>
+
+
  <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
     {% for guy in page_obj %}
         <div class="col">
