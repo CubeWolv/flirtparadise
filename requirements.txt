@@ -10,6 +10,8 @@ click-didyoumean==0.3.1
 click-plugins==1.1.1
 click-repl==0.3.0
 colorama==0.4.6
+whitenoise
+pip install gunicorn
 Django==5.1.4
 djangorestframework==3.15.2
 google-ai-generativelanguage==0.6.10
