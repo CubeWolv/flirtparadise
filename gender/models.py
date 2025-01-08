@@ -31,6 +31,25 @@ class Habit(models.Model):
     def __str__(self):
         return self.name
 
+class AvailableHour(models.Model):
+    time_range = models.CharField(max_length=50)  # E.g., "9 AM - 12 PM"
+
+    def __str__(self):
+        return self.time_range
+
+class Language(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+class Area(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+# Abstract base profile
 class Profile(models.Model):
     phone_number = models.CharField(max_length=15)
     name = models.CharField(max_length=255)
@@ -43,9 +62,9 @@ class Profile(models.Model):
     habits = models.ManyToManyField(Habit, blank=True)
 
     class Meta:
-        abstract = True  # Make this abstract, no need to reference it directly
+        abstract = True  # Abstract base model
 
-# Concrete Profile models
+# Concrete profile models
 class Guy(Profile):
     pass
 
@@ -53,16 +72,23 @@ class Girl(Profile):
     pass
 
 class Escort(Profile):
-    pass
+    height = models.CharField(max_length=10, default="Average")
+    dress_size = models.CharField(max_length=10, default="M")  # Example sizes: S, M, L, etc.
+    skin = models.CharField(max_length=20, default="Fair")
+    vip = models.CharField(max_length=20, blank=True)
+    likings = models.TextField(blank=True, default="None")
+    dislikes = models.TextField(blank=True, default="None")
+    hours_available = models.ManyToManyField(AvailableHour, blank=True)
+    languages_spoken = models.ManyToManyField(Language, blank=True)
+    areas = models.ManyToManyField(Area, blank=True)
 
-# ProfilePicture model with ForeignKey to concrete profiles
+# Profile picture model
 class ProfilePicture(models.Model):
-    # ForeignKey to link each picture to a specific guy, girl, or escort
     guy = models.ForeignKey(Guy, related_name="pictures", on_delete=models.CASCADE, null=True, blank=True)
     girl = models.ForeignKey(Girl, related_name="pictures", on_delete=models.CASCADE, null=True, blank=True)
     escort = models.ForeignKey(Escort, related_name="pictures", on_delete=models.CASCADE, null=True, blank=True)
     
-    image = models.ImageField(upload_to='profile_pics/')
+    image = models.ImageField(upload_to='profile_pics/', default='default.jpg')  # Provide a default image
 
     def __str__(self):
         if self.guy:

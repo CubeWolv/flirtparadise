@@ -28,7 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'flirtparadise-production.up.railway.app',
     '127.0.0.1',
-    'localhost'
+    'localhost',
+    'flirtparadise.xyz'
 ]
 
 
