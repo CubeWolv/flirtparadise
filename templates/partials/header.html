@@ -1,5 +1,5 @@
 <header class="bg-dark py-3">
-    <div class="container">
+    <div class="container12">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <!-- Logo on the left -->
             <a class="navbar-brand" href="{% url 'escorts' %}">Flirt Paradise</a> <!-- Updated link to homepage using URL template tag -->
@@ -12,21 +12,22 @@
             <!-- Navbar links on the right -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'escorts' %}">Home</a>
+                    </li>
                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'escorts' %}">Escorts</a>
                     </li>
    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'chat' %}">Sexting</a>
+                        <a class="nav-link" href="{% url 'girls' %}">Chat rooms</a>
          </li>
                               <li class="nav-item">
-                        <a class="nav-link" href="{% url 'rules' %}">Rules</a>
+                        <a class="nav-link" href="{% url 'contact' %}">Contact us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'girls' %}">Girls</a>
+                        <a class="nav-link" href="#">Blog</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'guys' %}">Guys</a>
-                    </li>
+                    
                 </ul>
             </div>
         </nav>
@@ -48,5 +49,12 @@
         .header h1 {
             font-family: 'Playfair Display', serif;
             color: #fff;
+        }
+        .navbar-toggler{
+            margin-right:8px;
+        }
+
+        .navbar-brand{
+            margin-left:8px;
         }
 </style>

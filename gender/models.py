@@ -71,16 +71,24 @@ class Guy(Profile):
 class Girl(Profile):
     pass
 
+def get_default_new_until():
+    return now() + timedelta(days=14)
+
 class Escort(Profile):
     height = models.CharField(max_length=10, default="Average")
     dress_size = models.CharField(max_length=10, default="M")  # Example sizes: S, M, L, etc.
     skin = models.CharField(max_length=20, default="Fair")
-    vip = models.CharField(max_length=20, blank=True)
+    calls = models.CharField(max_length=20, default="Fair")
+    premium = models.BooleanField(default=False)
+    verified = models.BooleanField(default=False)  # Verification status
+    is_new = models.BooleanField(default=True)  # New status
+    new_until = models.DateTimeField(default=get_default_new_until)  # Use callable function
     likings = models.TextField(blank=True, default="None")
     dislikes = models.TextField(blank=True, default="None")
     hours_available = models.ManyToManyField(AvailableHour, blank=True)
     languages_spoken = models.ManyToManyField(Language, blank=True)
     areas = models.ManyToManyField(Area, blank=True)
+
 
 # Profile picture model
 class ProfilePicture(models.Model):

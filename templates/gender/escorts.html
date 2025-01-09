@@ -4,13 +4,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flirt Paradise | Escorts</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi, user-scalable=no">
+    <meta name="description" content="Find premium escorts in Uganda offering discreet adult services. Explore nightlife, dating, and exclusive experiences in Uganda today.">
+    <meta name="keywords" content="escorts in Uganda, adult services Uganda, Uganda nightlife,sex in uganda">
+    <meta name="author" content="Your Website Name">
+    <title>Flirt Paradise | Kampala Escorts: Sexy Call Girls</title>
     <!-- Bootstrap CDN -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/flirtparadiselogo(1).png' %}">
 
     <style>
         body {
@@ -31,6 +35,7 @@
             width: 90%;
             margin: 0 auto;
             text-align: center;
+
 
         }
 
@@ -206,30 +211,308 @@
     }
 }
 
+
+
+.container-all {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+}
+
+.sidebar .city-item {
+  margin: 15px 0;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 8px;
+  transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+  background-color: #555;
+}
+
+.subcities {
+  list-style-type: none;
+  padding-left: 20px;
+  display: none; /* Keep the dropdowns hidden initially */
+}
+
+.container-all {
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  width: 250px;
+  background: #1a1a1a; /* Deep black for a sleek look */
+  color: #f4f4f4; /* Light gray for text contrast */
+  padding: 15px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.7); /* Subtle shadow for depth */
+  font-family: 'Arial', sans-serif;
+  position: relative;
+  transition: all 0.3s ease; /* Smooth transitions */
+}
+
+.sidebar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar .city-item {
+  margin: 15px 0;
+  font-size: 1.1rem;
+}
+
+.sidebar a {
+  color: #e0e0e0; /* Soft white for links */
+  text-decoration: none;
+  display: block;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease; /* Hover animations */
+}
+
+.sidebar a:hover {
+  background-color: #333333; /* Darker hover effect */
+  color: #ffffff; /* Bright text on hover */
+  transform: translateX(5px); /* Subtle shift to the right */
+}
+
+.subcities {
+  list-style-type: none;
+  padding-left: 20px;
+  display: none;
+}
+
+.subcities li a {
+  font-size: 0.9rem;
+  padding: 8px 15px;
+  background-color: #252525; /* Slightly lighter black for dropdown */
+  color: #c7c7c7; /* Softer gray for sub-links */
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.subcities li a:hover {
+  background-color: #444444; /* Highlight effect for sub-links */
+  color: #ffffff;
+}
+
+#toggleSidebarBtn {
+  background-color: #1a1a1a;
+  color: #f4f4f4;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: none; /* Default: hidden for desktop */
+}
+
+#toggleSidebarBtn:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #121212; /* Dark background for modern look */
+  color: #ffffff;
+}
+
+h1 {
+  color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+/* Media Query for Responsive Design */
+@media (max-width: 768px) {
+  .container-all {
+    flex-direction: column; /* Stack elements */
+  }
+
+  .sidebar {
+    width: 100%;
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    margin-top:11%;
+  }
+
+  .sidebar.visible {
+    display: block; /* Sidebar toggle for mobile */
+  }
+
+  #toggleSidebarBtn {
+    display: block;
+    width: 100%;
+    padding:10px;
+  }
+
+  .main-content {
+    margin-top: 20px; /* Prevent content from overlapping the button */
+  }
+  .container{
+    width:75%;
+    height:auto;
+  }
+}
     </style>
 </head>
 <body>
 
     <!-- Include the header -->
     {% include 'partials/header.html' %}
-
-   <div class="container mt-5">
-    <h2 class="text-center mb-4">Hook Up With Sexy Girls In Kampala</h2>
-
-
-<nav class="nav-container">
-    <ul class="nav-bar">
-        <li class="nav-item">
-            <a class="nav-link" href="">VIPS</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="">Chat rooms</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="">Find in your area</a>
-        </li>
-    </ul>
+ <div class="container-all">
+<!-- Left Nav Bar -->
+  <nav class="sidebar">
+  <ul>
+    <li class="city-item">
+      <a href="#" class="city-toggle">Entebbe</a>
+      <ul class="subcities">
+        <li><a href="{% url 'escorts_by_city' 'Abaita Ababiri' %}">Abaita Ababiri</a></li>
+        <li><a href="{% url 'escorts_by_city' 'Entebbe Town Escorts' %}">Entebbe Town Escorts</a></li>
+        <li><a href="{% url 'escorts_by_city' 'Garuga' %}">Garuga</a></li>
+        <li><a href="{% url 'escorts_by_city' 'Kitoro' %}">Kitoro</a></li>
+      </ul>
+    </li>
+    <li class="city-item">
+      <a href="#" class="city-toggle">Fort Portal</a>
+      <ul class="subcities">
+        <li><a href="{% url 'escorts_by_city' 'Fort Portal Town' %}">Fort Portal Town</a></li>
+      </ul>
+    </li>
+    <li class="city-item">
+      <a href="#" class="city-toggle">Gulu</a>
+      <ul class="subcities">
+        <li><a href="{% url 'escorts_by_city' 'Gulu Town' %}">Gulu Town</a></li>
+      </ul>
+    </li>
+    <li class="city-item">
+      <a href="#" class="city-toggle">Jinja</a>
+      <ul class="subcities">
+        <li><a href="{% url 'escorts_by_city' 'Jinja Town Escorts' %}">Jinja Town Escorts</a></li>
+      </ul>
+    </li>
+    <li class="city-item">
+      <a href="#" class="city-toggle">Kampala</a>
+      <ul class="subcities">
+        <li><a href="{% url 'escorts_by_city' 'Bugolobi' %}">Bugolobi</a></li>
+        <li><a href="{% url 'escorts_by_city' 'Bukoto' %}">Bukoto</a></li>
+        <li><a href="{% url 'escorts_by_city' 'Bulenga' %}">Bulenga</a></li>
+        <li><a href="{% url 'escorts_by_city' 'Bunga' %}">Bunga</a></li>
+        <li><a href="{% url 'escorts_by_city' 'Busega' %}">Busega</a></li>
+        <li><a href="{% url 'escorts_by_city' 'Buziga' %}">Buziga</a></li>
+        <!-- Add remaining Kampala subcities dynamically here -->
+      </ul>
+    </li>
+    <li class="city-item">
+      <a href="#" class="city-toggle">Kasese</a>
+      <ul class="subcities">
+        <li><a href="{% url 'escorts_by_city' 'Kasese Town' %}">Kasese Town</a></li>
+      </ul>
+    </li>
+    <li class="city-item">
+      <a href="#" class="city-toggle">Kira</a>
+      <ul class="subcities">
+        <li><a href="{% url 'escorts_by_city' 'Bulindo' %}">Bulindo</a></li>
+        <li><a href="{% url 'escorts_by_city' 'Kira Town' %}">Kira Town</a></li>
+        <li><a href="{% url 'escorts_by_city' 'Namugongo Escorts' %}">Namugongo Escorts</a></li>
+      </ul>
+    </li>
+    <li class="city-item">
+      <a href="#" class="city-toggle">Lugazi</a>
+      <ul class="subcities">
+        <li><a href="{% url 'escorts_by_city' 'Lugazi Town' %}">Lugazi Town</a></li>
+      </ul>
+    </li>
+    <li class="city-item">
+      <a href="#" class="city-toggle">Masaka</a>
+      <ul class="subcities">
+        <li><a href="{% url 'escorts_by_city' 'Masaka Town' %}">Masaka Town</a></li>
+      </ul>
+    </li>
+    <li class="city-item">
+      <a href="#" class="city-toggle">Mbarara</a>
+      <ul class="subcities">
+        <li><a href="{% url 'escorts_by_city' 'Mbarara Town Escorts' %}">Mbarara Town Escorts</a></li>
+      </ul>
+    </li>
+    <li class="city-item">
+      <a href="#" class="city-toggle">Mukono</a>
+      <ul class="subcities">
+        <li><a href="{% url 'escorts_by_city' 'Mukono Town' %}">Mukono Town</a></li>
+        <li><a href="{% url 'escorts_by_city' 'Seeta' %}">Seeta</a></li>
+        <li><a href="{% url 'escorts_by_city' 'Sonde' %}">Sonde</a></li>
+      </ul>
+    </li>
+    <li class="city-item">
+      <a href="#" class="city-toggle">Nansana</a>
+      <ul class="subcities">
+        <li><a href="{% url 'escorts_by_city' 'Nansana Town' %}">Nansana Town</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
+
+ <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Get all city links
+      const cityLinks = document.querySelectorAll('.city-toggle');
+
+      // Loop through each city link and add a click event listener
+      cityLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+          // Prevent default link behavior
+          event.preventDefault();
+
+          // Get the subcities list that follows the clicked city
+          const subcities = link.nextElementSibling;
+
+          // Toggle the display of the subcities
+          if (subcities.style.display === "none" || subcities.style.display === "") {
+            subcities.style.display = "block"; // Show the dropdown
+          } else {
+            subcities.style.display = "none"; // Hide the dropdown
+          }
+        });
+      });
+
+      // Toggle sidebar visibility on button click
+      const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
+      const sidebar = document.querySelector('.sidebar');
+      toggleSidebarBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('visible');
+        toggleSidebarBtn.textContent = sidebar.classList.contains('visible') ? 'Hide Cities' : 'Show Cities';
+      });
+    });
+  </script>
+
+ <button id="toggleSidebarBtn" class="toggle-sidebar">Escorts near you</button>
+   <div class="container mt-5">
+    <h1 class="text-center mb-4">Hook Up With Sexy Girls In Kampala</h1>
+
+
 
 <!-- CSS -->
 <style>
@@ -293,28 +576,116 @@
             text-align: center; /* Center text */
         }
     }
-</style>
 
-    <!-- Girls Display Section -->
-   <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
+    .premium-badge {
+    position: absolute;
+    top: 16px; /* Adjust the top position to 'hang' the badge */
+    right: -5px; /* Adjust the right position for the angled look */
+    background-color: #ffa500; /* Orange background to match the "Premium" badge in your image */
+    color: #fff; /* White text */
+    font-size: 12px; /* Adjust font size */
+    font-weight: bold;
+    padding: 5px 10px; /* Padding for the badge text */
+    transform: rotate(45deg); /* Rotate the badge to hang off the corner */
+    z-index: 10; /* Ensure it appears above other elements */
+    border-radius: 4px; /* Slightly round the edges */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+    text-align: center;
+}
+
+.card-overlay {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.left-content {
+    flex: 1; /* Take up available space */
+}
+
+.right-content {
+    display: flex;
+    flex-direction: column; /* Stack badges vertically */
+    align-items: flex-end;
+}
+
+.badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    color: white;
+}
+
+.badge-new {
+    background-color: #D8BFD8; /* Light Purple (Thistle) */
+    color: #4B0082; /* Indigo text for contrast */
+}
+
+.badge-verified {
+    background-color: #32CD32; /* Lime Green */
+    color: white; /* White text for clarity */
+}
+
+
+</style>
+<!-- Girls Display Section -->
+<div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
     {% for escort in page_obj %}
         <div class="col">
             <div class="card shadow-lg border-0 rounded position-relative">
+                <!-- Premium Badge -->
+                
+                    {% if escort.premium %}
+        <div class="premium-badge position-absolute">
+            Premium
+        </div>
+    {% endif %}
+
+           
+               
+                
                 {% if escort.pictures.first %}
                     <a href="{% url 'view_person' pk=escort.pk %}">
                         <img src="{{ escort.pictures.first.image.url }}" class="card-img-top" alt="{{ escort.name }}">
                     </a>
                 {% endif %}
-                <div class="card-overlay">
-                    <h5 class="card-title">
-                        <a href="{% url 'view_person' pk=escort.pk %}" class="text-decoration-none text-white">{{ escort.name }}</a>
-                    </h5>
-                    <p class="card-text">{{ escort.bio|slice:":200" }}...</p>
-                </div>
+              <div class="card-overlay d-flex justify-content-between align-items-start">
+    <!-- Left content -->
+    <div class="left-content">
+        <h5 class="card-title">
+            <a href="{% url 'view_person' pk=escort.pk %}" class="text-decoration-none text-white">{{ escort.name }}</a>
+        </h5>
+        <p class="card-text">
+            {% if escort.areas.exists %}
+                <span class="location"><i class="fa-solid fa-location-dot"></i> {{ escort.city }}</span> | 
+                {% for area in escort.areas.all %}
+                    <span class="area">{{ area.name }}</span>{% if not forloop.last %} | {% endif %}
+                {% endfor %}
+            {% else %}
+                <span class="location">No areas listed</span>
+            {% endif %}
+        </p>
+    </div>
+
+    <!-- Right content -->
+    <div class="right-content text-end">
+        {% if escort.is_new %}
+            <span class="badge badge-new">NEW</span>
+        {% endif %}
+        {% if escort.verified %}
+            <span class="badge badge-verified">VERIFIED</span>
+        {% endif %}
+    </div>
+</div>
+
             </div>
         </div>
     {% endfor %}
 </div>
+
 
 
 <nav>
@@ -341,7 +712,7 @@
     </ul>
 </nav>
 </div>
-
+</div>
     <!-- Include the footer -->
     {% include 'partials/footer.html' %}
 

@@ -6,7 +6,8 @@ from . import views
 urlpatterns = [
     path('guys', views.guys, name='guys'),
     path('girls', views.girls, name='girls'),
-    path('', views.escorts, name='escorts'),
+    path('', views.escorts, name='escorts'),  # For all escorts
+    path('escorts/<str:city>/', views.escorts_by_city, name='escorts_by_city'),
     path('payment/', views.flutterwave_payment, name='flutterwave_payment'),
     path('verify-payment/', views.verify_payment, name='verify_payment'),
     path('save-payment-data/', views.save_payment_data, name='save_payment_data'),
