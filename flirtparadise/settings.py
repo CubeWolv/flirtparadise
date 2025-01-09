@@ -34,7 +34,7 @@ ALLOWED_HOSTS = [
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'flirtparadise.xyz'
+    'https://flirtparadise.xyz'
 ]
 
 
