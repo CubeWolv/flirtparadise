@@ -39,21 +39,7 @@
 
         }
 
-        .girl-card {
-            background-color: rgba(34, 34, 34, 0.8);
-            border: 1px solid rgba(68, 68, 68, 0.8);
-            border-radius: 12px;
-            display: inline-block;
-            margin: 15px;
-            padding: 20px;
-            width: 230px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
 
-        .girl-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
 
         .girl-photo {
             width: 100%;
@@ -74,21 +60,7 @@
             font-weight: 300;
         }
 
-        .btn-custom {
-            background-color: #9b59b6;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            margin-top: 10px;
-        }
 
-        .btn-custom:hover {
-            background-color: #7e3b8f;
-        }
 
         .card {
             border-radius: 12px;
@@ -144,7 +116,7 @@
 
         @media (max-width: 768px) {
             .row-cols-md-4 {
-                row-cols-1;
+                row-cols-2;
             }
         }
         .mt-5{
@@ -373,9 +345,26 @@ h1 {
     margin-top: 20px; /* Prevent content from overlapping the button */
   }
   .container{
-    width:75%;
+    width:95%;
     height:auto;
   }
+  .card-img-top {
+            height: 300px;
+        }
+        .right-content {
+    position:absolute;
+    bottom:0px;
+    right:0px;
+    font-size:10px;
+}
+
+.badge {
+    display: inline-block;
+    font-size: 0.1rem;
+    font-weight: lighter;
+    padding: 2px 6px;
+    padding:200px;
+}
 }
     </style>
 </head>
@@ -516,6 +505,14 @@ h1 {
 
 <!-- CSS -->
 <style>
+  .navbar-toggler{
+            margin-right:-10px;
+        }
+
+        .navbar-brand{
+            margin-left:-10px;
+        }
+
     /* Container for the navigation bar */
     .nav-container {
         width: 100%; /* Full width */
@@ -629,10 +626,27 @@ h1 {
     color: white; /* White text for clarity */
 }
 
+@media (max-width: 768px) {
 
+  .card-img-top {
+            height: 300px;
+        }
+        .right-content {
+    position:absolute;
+    bottom:5px;
+    right:0px;
+}
+
+.badge {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: lighter;
+    padding: 2px 6px;
+}
+}
 </style>
 <!-- Girls Display Section -->
-<div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
+<div class="row row-cols-2 row-cols-md-4 g-4 justify-content-center">
     {% for escort in page_obj %}
         <div class="col">
             <div class="card shadow-lg border-0 rounded position-relative">

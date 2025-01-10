@@ -125,6 +125,8 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
 }
 
 /* Call Button */
@@ -346,7 +348,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <bold><span class="hidden-phone">{{ escort.phone_number }}</span></bold>
         <span class="full-phone" style="display:none;">{{ escort.phone_number }}</span>
     </button>
-    <a href="{{ escort.whatsapp }}"><button class="whatsapp-btn">WhatsApp Me!</button></a>
+    <a href="{{ escort.whatsapp }}" class="whatsapp-btn">WhatsApp Me!</a>
 </div>
  <div class="services-box-general">
     <h5>General</h5>

@@ -1,7 +1,15 @@
 from django.urls import path
 from django.contrib.auth.views import LogoutView
 from . import views
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import StaticViewSitemap, EscortSitemap, GuySitemap, GirlSitemap
 
+sitemaps = {
+    'static': StaticViewSitemap,
+    'escorts': EscortSitemap,
+    'guys': GuySitemap,
+    'girls': GirlSitemap,
+}
 
 urlpatterns = [
     path('guys', views.guys, name='guys'),
@@ -14,4 +22,6 @@ urlpatterns = [
     path('escort/<int:pk>/', views.view_person, name='view_person'),
     path('chat/<int:profile_id>/', views.chat_room, name='chat_room'),
     path('chat/guy/<int:profile_id>/', views.chat_with_guy, name='chatwithguy'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+
 ]
