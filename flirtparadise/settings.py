@@ -101,7 +101,7 @@ WSGI_APPLICATION = 'flirtparadise.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL', '')  # Fallback to empty string if not set
+        default=os.environ.get('postgresql://postgres:WZdLRMINwwtyKpESuhsprKThXopaxCzJ@postgres-tg10.railway.internal:5432/railway', '')  # Fallback to empty string if not set
     )
 }
 
