@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'rest_framework',
     "whitenoise.runserver_nostatic",
     'django.contrib.sitemaps',
+    'flirtparadise'
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
 ]
 
 ROOT_URLCONF = 'flirtparadise.urls'
@@ -157,3 +159,19 @@ FLUTTERWAVE_SECRET_KEY = 'FLWSECK_TEST-1516083e6f90b0d3232180837c29902f-X'
 
 
 LOGIN_URL = 'login'
+
+
+
+GZIP_CONTENT_TYPES = [
+    'text/plain',
+    'text/html',
+    'text/css',
+    'application/javascript',
+    'application/json',
+    'application/xml',
+    'font/woff2',
+    # Add any other mime types you want to compress
+]
+
+# Optionally, set the minimum size of the response to be compressed (in bytes)
+GZIP_MIN_LENGTH = 1000
