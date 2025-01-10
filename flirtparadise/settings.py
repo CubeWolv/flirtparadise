@@ -42,7 +42,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = False
 
-
+SITE_URL = "https://flirtparadise.xyz"
 # Application definition
 
 INSTALLED_APPS = [
