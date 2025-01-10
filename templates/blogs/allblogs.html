@@ -1,0 +1,143 @@
+{% extends 'share layouts/base.html' %} {% load static %}
+
+<!--............................header.......................................-->
+{% block header %}
+<title>blogs</title>
+<link rel="stylesheet" href='{% static "css/allblogs/allblogs.css" %}' />
+{% endblock header %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+{% if request.user == user %}
+
+<body style="background-color:rgb(231, 231, 231);">
+    {% endif %}
+    {% endif %}
+
+    <!------------------------------------The navigation vertical-------------------------->
+    <div class="the-container-for-navigation1">
+        <form method="get" action="{% url 'search' %}" class="the-form-for-the-search">
+            <input type="search" placeholder="Search for any blog" id="theSearchboxVNAv" name="q">
+
+            <svg xmlns="http://www.w3.org/2000/svg" class="the-search-icon-h" width="16" height="16" fill="currentColor"
+                class="bi bi-search" viewBox="0 0 16 16">
+                <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </svg>
+        </form>
+        <a href="/blogs/?q=">Appals</a>
+        <a href="/blogs/?q=apps">Apps</a>
+        <a href="/blogs/?q=gadgets">Hardware</a>
+        <a href="/blogs/?q=security">Security</a>
+        <a href="/blogs/?q=crypto">Crypto</a>
+        <a href="/blogs/?q=work">Business</a>
+        <a href="/blogs/?q=startups">Startups</a>
+        <a href="/blogs/?q=Entertainment">Media & Entertainment</a>
+        <a href="/blogs/?q=market anlysis">Market Analysis</a>
+    </div>
+    <style>
+        .the-container-for-navigation1 {
+            z-index: 5;
+        }
+    </style>
+    {% if posts %}
+
+    <!--the number of posts-->
+    <center>
+        <div class="number-of-blogs-container">
+            <p>About <b>{{posts|length}}</b> results of <b>{{q|default:"all Blogs"}}</b></p>
+        </div>
+    </center>
+
+    <!--..................................The blogs.......................................-->
+    <div class="containerForAllThePosts-p">
+        {% for post in posts %}
+        <!--blog div-->
+
+        <div class="The-divs">
+            <!--....................the pencil edit........................-->
+            {% if request.user.is_authenticated %}
+            {% if request.user == user %}
+            <a href="{% url 'editpost' post.id %}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+            {% endif %}
+            {% endif %} 
+
+            <div class="theContent-inside-the-divs">
+                <a href="{% url 'index'  post.title %}" class="PostLINK">
+                    <div class="theTitleContainer">
+                        <p> {{post.slug}} </p>
+                        <p class="theTitle"> {{post.title}}</p>
+                        <p> {{post.author}} </p>
+                        <p> {{post.created_on}}</p>
+                    </div>
+
+                    <div class="the-image-div">
+                        <img src="{{post.postimage.url}}" alt="{{post.title}}">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        {% endfor %}
+
+        <!--if no posts found-->
+        {% else%}
+
+        <center>
+            <div class="no-result-container">
+                <p class="no-result-header">Sorry! No results for {{q}}</p>
+                <img src="{% static 'images/no-content.png' %}" class="secondImage" />
+            </div>
+        </center>
+        {% endif %}
+
+
+        <!--//////////////////////////////////////PAGINATION/////////////////////////////-->
+        <!-- Other template content -->
+        <center>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                    <a href="?page=1"><svg class="svg1" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                            <path fill-rule="evenodd"
+                                d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                        </svg></a>
+                    <a href="?page={{ page_obj.previous_page_number }}"><svg class="svg1"
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-caret-left" viewBox="0 0 16 16">
+                            <path
+                                d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z" />
+                        </svg></a>
+                    {% endif %}
+
+                    <span class="current">
+                        {{ page_obj.number }} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
+                        </svg> {{ page_obj.paginator.num_pages }}
+                    </span>
+
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}"><svg class="svg1" xmlns="http://www.w3.org/2000/svg"
+                            width="16" height="16" fill="currentColor" class="bi bi-caret-right" viewBox="0 0 16 16">
+                            <path
+                                d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z" />
+                        </svg></a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}"><svg class="svg1"
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
+                            <path fill-rule="evenodd"
+                                d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg></a>
+                    {% endif %}
+                </span>
+            </div>
+        </center>
+
+    </div>
+    {% endblock %}
