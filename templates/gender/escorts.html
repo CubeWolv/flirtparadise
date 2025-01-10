@@ -198,7 +198,7 @@
                
                 
                 {% if escort.pictures.first %}
-                  
+    <a href="{% url 'view_person' pk=escort.pk %}">               
 <picture>
   <source srcset="{{ escort.pictures.first.image.url | webp_conversion_filter }}" type="image/webp">
   <img src="{{ escort.pictures.first.image.url }}" class="card-img-top" alt="{{ escort.name }}"  loading="eager">
