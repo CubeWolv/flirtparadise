@@ -11,8 +11,10 @@ click-plugins==1.1.1
 click-repl==0.3.0
 colorama==0.4.6
 whitenoise
+psycopg2
 gunicorn
 Django==5.1.4
+dj-database-url
 djangorestframework==3.15.2
 google-ai-generativelanguage==0.6.10
 google-api-core==2.24.0
