@@ -99,15 +99,17 @@ WSGI_APPLICATION = 'flirtparadise.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL is None:
+    raise ValueError("DATABASE_URL environment variable is not set")
+
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('postgresql://postgres:WZdLRMINwwtyKpESuhsprKThXopaxCzJ@postgres-tg10.railway.internal:5432/railway', '')  # Fallback to empty string if not set
-    )
+    'default': dj_database_url.config(default=DATABASE_URL)
 }
 
-# Ensure ENGINE is set properly by default when using dj-database-url
+# Ensure ENGINE is set properly
 DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
