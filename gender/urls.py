@@ -11,6 +11,13 @@ sitemaps = {
     'girls': GirlSitemap,
 }
 
+def sitemap_view(request):
+    response = sitemap(request, sitemaps)
+    # Remove 'X-Robots-Tag' header for the sitemap
+    response['X-Robots-Tag'] = ''
+    return response
+
+
 urlpatterns = [
     path('guys', views.guys, name='guys'),
     path('girls', views.girls, name='girls'),

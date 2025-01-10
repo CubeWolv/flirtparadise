@@ -54,7 +54,7 @@ class StaticViewSitemap(Sitemap):
     changefreq = 'daily'
 
     def items(self):
-        return ['contact', 'flutterwave_payment', 'verify_payment']
+        return ['contact','escorts', 'flutterwave_payment', 'verify_payment']
 
     def location(self, item):
         return reverse(item)
