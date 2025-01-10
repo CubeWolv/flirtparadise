@@ -99,27 +99,14 @@ WSGI_APPLICATION = 'flirtparadise.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-if os.environ.get('DATABASE_URL') is None:
-    # If DATABASE_URL is not set, use SQLite for local development
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
-else:
-    # If DATABASE_URL is set (we're in production on Railway), use PostgreSQL
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=os.environ.get('DATABASE_URL', '')
-        )
-    }
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL', '')  # Fallback to empty string if not set
+    )
+}
 
-    # Explicitly set ENGINE for PostgreSQL, just in case it's not set
-    DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
-
-    # Optional: Configure persistent connections for production (optional)
-    DATABASES['default']['CONN_MAX_AGE'] = 600
+# Ensure ENGINE is set properly by default when using dj-database-url
+DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
 
 
 # Password validation
