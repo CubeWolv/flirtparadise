@@ -11,12 +11,10 @@ sitemaps = {
     'girls': GirlSitemap,
 }
 
-def sitemap_view(request):
+def custom_sitemap_view(request, sitemaps):
     response = sitemap(request, sitemaps)
-    # Remove 'X-Robots-Tag' header for the sitemap
-    response['X-Robots-Tag'] = ''
+    response['X-Robots-Tag'] = 'index, follow'
     return response
-
 
 urlpatterns = [
     path('guys', views.guys, name='guys'),
@@ -29,6 +27,7 @@ urlpatterns = [
     path('escort/<int:pk>/', views.view_person, name='view_person'),
     path('chat/<int:profile_id>/', views.chat_room, name='chat_room'),
     path('chat/guy/<int:profile_id>/', views.chat_with_guy, name='chatwithguy'),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('sitemap.xml', custom_sitemap_view, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+
 
 ]
