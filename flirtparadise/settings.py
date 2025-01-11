@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     'rest_framework',
     "whitenoise.runserver_nostatic",
     'django.contrib.sitemaps',
-    'flirtparadise'
+    'flirtparadise',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -180,3 +181,40 @@ GZIP_CONTENT_TYPES = [
 
 # Optionally, set the minimum size of the response to be compressed (in bytes)
 GZIP_MIN_LENGTH = 1000
+
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 500,
+    'width': '100%',
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+    'selector': 'textarea',
+    'theme': 'silver',
+    'plugins': 'image link media preview codesample table code lists fullscreen insertdatetime nonbreaking contextmenu directionality searchreplace wordcount visualblocks visualchars code fullscreen autolink lists charmap print hr anchor pagebreak',
+    'toolbar1': 'fullscreen preview bold italic underline | fontselect fontsizeselect | forecolor backcolor | alignleft alignright aligncenter alignjustify | indent outdent | bullist numlist table | link image media',
+    'toolbar2': 'visualblocks visualchars | charmap hr pagebreak nonbreaking anchor | code',
+    'contextmenu': 'formats | link image',
+    'images_upload_url': '/tinymce-upload/',  # URL to handle image uploads
+    'file_picker_callback': '''
+        function(callback, value, meta) {
+            if (meta.filetype == 'image') {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
+                input.onchange = function() {
+                    var file = this.files[0];
+                    var reader = new FileReader();
+                    reader.onload = function() {
+                        callback(reader.result, {
+                            alt: file.name
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                };
+                input.click();
+            }
+        }
+    ''',
+    'menubar': True,
+    'statusbar': True,
+}
+
