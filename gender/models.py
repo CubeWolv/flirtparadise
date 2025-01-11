@@ -2,6 +2,9 @@ from django.db import models
 from django.utils.timezone import now, timedelta
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from tinymce.models import HTMLField
+from django.utils.html import strip_tags
+from django.utils.text import slugify
 
 class UserPayment(models.Model):
     username = models.CharField(max_length=150)
@@ -16,16 +19,7 @@ class UserPayment(models.Model):
             self.expires_at = now() + timedelta(days=1)  # Set expiry time to 24 hours from creation
         super().save(*args, **kwargs)
 
-
-
-
 class Service(models.Model):
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-
-class Habit(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
@@ -36,12 +30,6 @@ class AvailableHour(models.Model):
 
     def __str__(self):
         return self.time_range
-
-class Language(models.Model):
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
 
 class Area(models.Model):
     name = models.CharField(max_length=255)
@@ -54,12 +42,10 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=15)
     name = models.CharField(max_length=255)
     age = models.PositiveIntegerField()
-    city = models.CharField(max_length=255)
+    city = models.CharField(max_length=255, default="Kampala")
     bio = models.TextField()
     whatsapp = models.CharField(max_length=225)
-    gender = models.CharField(max_length=10, choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')])
     services = models.ManyToManyField(Service, blank=True)
-    habits = models.ManyToManyField(Habit, blank=True)
 
     class Meta:
         abstract = True  # Abstract base model
@@ -76,19 +62,15 @@ def get_default_new_until():
 
 class Escort(Profile):
     height = models.CharField(max_length=10, default="Average")
-    dress_size = models.CharField(max_length=10, default="M")  # Example sizes: S, M, L, etc.
+    dress_size = models.CharField(max_length=10, default="Straight")  # Updated default
     skin = models.CharField(max_length=20, default="Fair")
-    calls = models.CharField(max_length=20, default="Fair")
+    calls = models.CharField(max_length=20, default="outcalls & incalls")  # Updated default
     premium = models.BooleanField(default=False)
     verified = models.BooleanField(default=False)  # Verification status
     is_new = models.BooleanField(default=True)  # New status
     new_until = models.DateTimeField(default=get_default_new_until)  # Use callable function
-    likings = models.TextField(blank=True, default="None")
-    dislikes = models.TextField(blank=True, default="None")
     hours_available = models.ManyToManyField(AvailableHour, blank=True)
-    languages_spoken = models.ManyToManyField(Language, blank=True)
     areas = models.ManyToManyField(Area, blank=True)
-
 
 # Profile picture model
 class ProfilePicture(models.Model):
@@ -106,3 +88,33 @@ class ProfilePicture(models.Model):
         elif self.escort:
             return f"Picture for {self.escort.name}"
         return "Profile Picture"
+
+def slug_default():
+    # Return the slugified version of the blog title
+    return slugify('default-title')  # You can customize this part as needed
+
+
+class BlogPost(models.Model):
+    title = models.CharField(max_length=255)  # Title of the blog post
+    slug = models.SlugField(unique=True, default=slug_default)  # Unique slug field
+    body = HTMLField()  # Use TinyMCE for rich text editing
+    created_at = models.DateTimeField(auto_now_add=True)  # Automatically set on creation
+    updated_at = models.DateTimeField(auto_now=True)  # Automatically update on save
+    published_at = models.DateTimeField(default=now)  # Default to current time
+    is_published = models.BooleanField(default=True)  # Toggle visibility
+
+    class Meta:
+        ordering = ['-published_at']  # Order by most recent posts first
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        """Generate the slug from the title when saving."""
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def snippet(self):
+        """Return the first 100 characters of the body as plain text."""
+        plain_text = strip_tags(self.body)  # Remove HTML tags
+        return f"{plain_text[:1000]}..." if len(plain_text) > 1000 else plain_text

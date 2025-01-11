@@ -13,6 +13,7 @@ colorama==0.4.6
 whitenoise
 psycopg2
 gunicorn
+django-tinymce
 Django==5.1.4
 dj-database-url
 djangorestframework==3.15.2

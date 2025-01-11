@@ -6,7 +6,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 import json
-from .models import UserPayment,Escort ,Girl, Guy
+from .models import UserPayment,Escort ,Girl, Guy, BlogPost
 from django.utils.timezone import now
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -220,3 +220,12 @@ def save_payment_data(request):
 
 
 
+def blog(request):
+    # Fetch all blog posts, ordered by publication date
+    blogs = BlogPost.objects.filter(is_published=True).order_by('-published_at')
+    return render(request, './blog/blog.html', {'blogs': blogs})
+
+def viewblog(request, blog_title):
+    # Fetch a specific blog post by ID
+    blog = get_object_or_404(BlogPost, slug=blog_title)
+    return render(request, './blog/viewblog.html', {'blog': blog})
