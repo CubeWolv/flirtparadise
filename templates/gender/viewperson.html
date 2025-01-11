@@ -485,6 +485,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>{{ escort.bio }}</p>
     </div>
     <!-- Services Section -->
+
+    
 <div class="divider"></div>
 
  <div class="services-box">
@@ -506,41 +508,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-    <h5 style="margin-top:50px">Languages</h5>
-    {% if escort.languages_spoken.exists %}
-        <ul class="services-list">
-            {% for language in escort.languages_spoken.all %}
-                <li class="service-item">
-                    <span class="service-name">{{ language.name }}</span>
-                    <span class="line"></span>
-                    <span class="yes">Fair</span>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No languages spoken.</p>
-    {% endif %}
+   
 </div>
-
-</div>
-
-
-
-
-
-
-
-<div class="lower-screen">
-   <!-- About Me Section -->
-    <div class="about-box" style="border-radius: 10px;padding:10px;margin-bottom:30px">
-      <h5>Likes & dislikes</h5>  
-        <p style="color:silver;font-size: 14px"><span style="color:purple;font-size: 23px;">&#10084;</span>  {{ escort.likings }}</p>
-        <p style="color:silver;font-size: 14px"><span style="color:red;font-size: 23px;"> &#10539;</span> {{ escort.dislikes }}</p>
-
-    </div>
-    <!-- Services Section -->
 <div class="divider"></div>
-
  <div class="services-box">
     <h5>Availability</h5>
     {% if escort.hours_available.exists %}
@@ -554,6 +524,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>No services listed.</p>
     {% endif %}
 </div>
+</div>
+
+
+
+
+
+
+
+<div class="lower-screen">
+ 
+
 
 </div>
 
