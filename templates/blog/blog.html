@@ -348,6 +348,14 @@ h1 {
 
 
 
+    {% if specific_blog %}
+        <div>
+            <h2>{{ specific_blog.title }}</h2>
+            <p>{{ specific_blog.content }}</p>
+        </div>
+    {% else %}
+        <p>No featured blog found.</p>
+    {% endif %}
 
 
 
