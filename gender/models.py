@@ -96,7 +96,7 @@ def slug_default():
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=255)  # Title of the blog post
-    slug = models.SlugField(max_length=255, unique=True, default=slug_default)  # Unique slug field
+    slug = models.SlugField(unique=True, default=slug_default)  # Unique slug field
     body = HTMLField()  # Use TinyMCE for rich text editing
     created_at = models.DateTimeField(auto_now_add=True)  # Automatically set on creation
     updated_at = models.DateTimeField(auto_now=True)  # Automatically update on save

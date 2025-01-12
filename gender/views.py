@@ -223,7 +223,12 @@ def save_payment_data(request):
 def blog(request):
     # Fetch all blog posts, ordered by publication date
     blogs = BlogPost.objects.filter(is_published=True).order_by('-published_at')
-    return render(request, './blog/blog.html', {'blogs': blogs})
+    
+    # Fetch the specific blog by title
+    specific_blog_title = "Meet Verified Escorts in Uganda – flirtparadise Uganda Escorts"
+    specific_blog = BlogPost.objects.filter(is_published=True, title=specific_blog_title).first()
+    
+    return render(request, './blog/blog.html', {'blogs': blogs, 'specific_blog': specific_blog})
 
 def viewblog(request, blog_title):
     # Fetch a specific blog post by ID
