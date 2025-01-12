@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
     path('contactus', views.contact, name='contact'),
-    path('sitemaps/' ,views.sitemap ,name='sitemap'),
+    path('sitemaps' ,views.sitemap ,name='sitemap'),
 
 ]
