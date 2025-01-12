@@ -313,6 +313,42 @@ h1 {
 }
 
 
+/* Content Styling */
+.content {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.content p {
+    margin-bottom: 20px;
+}
+
+.content h2, .content h3 {
+    font-size: 28px;
+    color: #333;
+    margin-top: 40px;
+    font-weight: 600;
+}
+
+/* Box Shadow for Card-like Feel */
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Styling for any images inside the content */
+.content img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+   
     </style>
 <body>
   
@@ -351,7 +387,7 @@ h1 {
     {% if specific_blog %}
         <div>
             <h2>{{ specific_blog.title }}</h2>
-            <p>{{ specific_blog.content }}</p>
+            <p>{{ blog.body|safe }}</p>
         </div>
     {% else %}
         <p>No featured blog found.</p>
