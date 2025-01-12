@@ -387,7 +387,7 @@ h1 {
     {% if specific_blog %}
         <div>
             <h2>{{ specific_blog.title }}</h2>
-            <p>{{ blog.body|safe }}</p>
+            <p>{{ specific_blog.body|safe }}</p>
         </div>
     {% else %}
         <p>No featured blog found.</p>
