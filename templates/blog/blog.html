@@ -312,7 +312,14 @@ h1 {
     }
 }
 
-
+.container2 {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 /* Content Styling */
 .content {
     font-size: 18px;
@@ -383,7 +390,7 @@ h1 {
     </div>
 
 
-
+<div class="container2" >
     {% if specific_blog %}
         <div>
             <h2>{{ specific_blog.title }}</h2>
@@ -392,7 +399,7 @@ h1 {
     {% else %}
         <p>No featured blog found.</p>
     {% endif %}
-
+</div>
 
 
 
