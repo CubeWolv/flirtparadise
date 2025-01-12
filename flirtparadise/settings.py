@@ -189,9 +189,14 @@ TINYMCE_DEFAULT_CONFIG = {
     'custom_undo_redo_levels': 10,
     'selector': 'textarea',
     'theme': 'silver',
-    'plugins': 'image link media preview codesample table code lists fullscreen insertdatetime nonbreaking contextmenu directionality searchreplace wordcount visualblocks visualchars code fullscreen autolink lists charmap print hr anchor pagebreak',
-    'toolbar1': 'fullscreen preview bold italic underline | fontselect fontsizeselect | forecolor backcolor | alignleft alignright aligncenter alignjustify | indent outdent | bullist numlist table | link image media',
-    'toolbar2': 'visualblocks visualchars | charmap hr pagebreak nonbreaking anchor | code',
+    'plugins': ('image link media preview codesample table code lists fullscreen '
+                'insertdatetime nonbreaking contextmenu directionality searchreplace '
+                'wordcount visualblocks visualchars code fullscreen autolink lists '
+                'charmap print hr anchor pagebreak format'),
+    'toolbar1': ('fullscreen preview bold italic underline | formatselect | fontselect fontsizeselect | '
+                 'forecolor backcolor | alignleft alignright aligncenter alignjustify | '
+                 'indent outdent | bullist numlist table | link image media'),
+    'toolbar2': ('visualblocks visualchars | charmap hr pagebreak nonbreaking anchor | code'),
     'contextmenu': 'formats | link image',
     'images_upload_url': '/tinymce-upload/',  # URL to handle image uploads
     'file_picker_callback': '''
