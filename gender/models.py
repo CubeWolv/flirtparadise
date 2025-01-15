@@ -50,13 +50,6 @@ class Profile(models.Model):
     class Meta:
         abstract = True  # Abstract base model
 
-# Concrete profile models
-class Guy(Profile):
-    pass
-
-class Girl(Profile):
-    pass
-
 def get_default_new_until():
     return now() + timedelta(days=14)
 
@@ -74,25 +67,15 @@ class Escort(Profile):
 
 # Profile picture model
 class ProfilePicture(models.Model):
-    guy = models.ForeignKey(Guy, related_name="pictures", on_delete=models.CASCADE, null=True, blank=True)
-    girl = models.ForeignKey(Girl, related_name="pictures", on_delete=models.CASCADE, null=True, blank=True)
     escort = models.ForeignKey(Escort, related_name="pictures", on_delete=models.CASCADE, null=True, blank=True)
-    
     image = models.ImageField(upload_to='profile_pics/', default='default.jpg')  # Provide a default image
 
     def __str__(self):
-        if self.guy:
-            return f"Picture for {self.guy.name}"
-        elif self.girl:
-            return f"Picture for {self.girl.name}"
-        elif self.escort:
-            return f"Picture for {self.escort.name}"
-        return "Profile Picture"
+        return f"Picture for {self.escort.name}" if self.escort else "Profile Picture"
 
 def slug_default():
     # Return the slugified version of the blog title
     return slugify('default-title')  # You can customize this part as needed
-
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=255)  # Title of the blog post

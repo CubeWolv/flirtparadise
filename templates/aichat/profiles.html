@@ -1,0 +1,489 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flirt Paradise | girls</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all';">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all';">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"></noscript>
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"></noscript>
+
+<style>
+body {
+    background-color: #121212; /* Deep dark background */
+    color: #e0e0e0; /* Light gray text */
+    font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    margin: 0;
+    padding: 0;
+    background-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.9), rgba(34, 34, 34, 0.9), rgba(0, 0, 0, 0.7));
+    background-size: 200% 200%;
+    animation: gradientAnimation 8s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 100% 0%;
+    }
+    50% {
+        background-position: 0% 100%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
+}
+
+.container1 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Intro section with sleek typography */
+.intro-section {
+    background-color: #1e1e1e; /* Slightly lighter black background */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+}
+
+.intro-section h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #e0e0e0; /* Soft light gray text for the heading */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.intro-section h2:hover {
+    color: #ff4081; /* Glow effect on hover */
+}
+
+.intro-section p {
+    font-size: 1.25rem;
+    color: #b0b0b0; /* Slightly lighter gray for the paragraph text */
+    margin-bottom: 30px;
+}
+
+/* Navigation bar */
+/* Container for horizontal scroll on mobile */
+.nav-container {
+    overflow-x: auto; /* Enables horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+    padding: 10px 0; /* Adds some padding around the scroll area */
+}
+
+.nav-bar {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin-top: 0px;
+    white-space: nowrap; /* Prevents wrapping of items */
+
+}
+
+.nav-bar .nav-item1 a {
+    text-decoration: none;
+    color: #ffffff; /* White text color */
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    background-color: rgba(50, 50, 50, 0.7); /* Dark grey with transparency */
+    font-size: 14px;
+}
+
+.nav-bar .nav-item1 a:hover {
+    color: #ffffff; /* White text on hover */
+    background-color: rgba(80, 80, 80, 0.9); /* Slightly darker grey on hover */
+}
+
+/* Responsive mobile behavior */
+@media (max-width: 768px) {
+    .nav-bar {
+        justify-content: flex-start; /* Aligns items to the left on mobile */
+    }
+    .nav-bar .nav-item1 a {
+        font-size: 1rem; /* Slightly smaller font size for mobile */
+    }
+}
+
+
+
+.card {
+    border-radius: 25px; /* Increased radius for smoother rounded corners */
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width:85%;
+    border:1px solid #353434;
+}
+
+.card:hover {
+    border:1px solid silver;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.15), 0 20px 50px rgba(0, 0, 0, 0.1); /* Multi-layer shadow with gradient-like effect */
+}
+
+.card-img-top {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.98) 0%, rgba(0, 0, 0, 0) 100%); /* Darker gradient */
+    color: white;
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: left; /* Center align title */
+    flex-grow: 0; /* Prevents the title from growing too large */
+}
+
+.card-text {
+    font-size: 13px;
+    color: #d2d2d2;
+    font-weight: 400;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left; /* Center align the description */
+    flex-grow: 1; /* Allow text to use available space */
+}
+.icon-for-view{
+    font-size:12px;
+    color:#d2d2d2;
+}
+
+.page-link {
+    color: white;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.page-link:hover {
+    color: #ff4081;
+}
+/* Make the row centered and adjust spacing */
+.row-cols-1.row-cols-md-4 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the content */
+    gap: 0; /* Reduced gap between columns */
+}
+
+/* Card styles */
+.card {
+    margin-bottom: -15px; /* Space between rows */
+    width: 85%; /* Make sure cards take full width inside each column */
+    
+}
+
+
+/* Adjust spacing between columns */
+.col {
+    padding: 5px; /* Add padding to adjust spacing */
+     margin-right: -20px; /* Negative margin to pull the cards closer */
+    margin-left: -20px;  
+}
+
+/* Media query for mobile (show two cards per row) */
+@media (max-width: 767px) {
+    .row-cols-1.row-cols-md-4 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Two cards per row on mobile */
+        gap: 0px; /* Reduced gap for mobile */
+        width: 100%;
+    }
+
+    .col {
+        margin-right: 0; /* Remove negative margins for mobile */
+        margin-left: 0;  /* Remove negative margins for mobile */
+        padding: 10px;   /* Add padding for mobile */
+    }
+
+    .col {
+        width: 100%;
+    }
+
+    .card {
+        width: 100%; /* Ensure full width for cards in mobile */
+        max-width: none; /* Remove max-width on mobile */
+        margin-left: 10px;
+    }
+
+    .card-img-top {
+        height: 260px; /* Adjust image height for mobile */
+    }
+}
+
+/* Media query for tablets (show three cards per row) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .row-cols-1.row-cols-md-4 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Three cards per row on tablet */
+        gap: 10px; /* Adjust gap for tablets */
+        width: 100%;
+    }
+
+    .col {
+        margin-right: 0; /* Remove negative margins for tablet */
+        margin-left: 0;  /* Remove negative margins for tablet */
+        padding: 10px;   /* Add padding for tablet */
+    }
+
+    .col {
+        width: 100%;
+    }
+
+    .card {
+        width: 100%; /* Ensure full width for cards on tablet */
+        max-width: none; /* Remove max-width on tablet */
+        margin-left: 10px;
+    }
+
+    .card-img-top {
+        height: 270px; /* Adjust image height for tablet */
+    }
+}
+
+.pagination {
+    background-color: #1c1c1c; /* Dark background */
+    border-radius: 5px; /* Slightly rounded corners */
+    padding: 10px 15px;
+    display: inline-flex; /* Align items in a row */
+    justify-content: center;
+    list-style: none; /* Remove bullet points */
+    margin-top:50px;
+}
+
+.pagination .page-item {
+    margin: 0 5px; /* Spacing between pagination items */
+}
+
+.pagination .page-link {
+    background-color: #333; /* Darker button background */
+    border: 1px solid #444; /* Subtle border for buttons */
+    border-radius: 5px; /* Rounded buttons */
+    color: #fff; /* White text for contrast */
+    font-size: 0.9rem;
+    padding: 8px 12px; /* Comfortable padding */
+    text-decoration: none;
+    transition: all 0.3s ease; /* Smooth hover transition */
+}
+
+.pagination .page-link:hover {
+    background-color: #444; /* Slightly lighter on hover */
+    color: #9b59b6; /* Accent color for hover */
+    border-color: #555;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #9b59b6; /* Accent color for active page */
+    border-color: #9b59b6; /* Match border with background */
+    color: #fff; /* Ensure text remains visible */
+    font-weight: bold; /* Highlight active page */
+    cursor: default; /* Remove pointer effect on active page */
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: #222; /* Muted color for disabled items */
+    color: #555; /* Light gray text */
+    border-color: #333;
+    cursor: not-allowed; /* Disable pointer events */
+}
+
+.pagination .page-link svg {
+    vertical-align: middle; /* Align icons properly */
+    width: 14px;
+    height: 14px;
+    fill: currentColor; /* Match icon color with text */
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .pagination .page-link {
+        padding: 6px 10px; /* Slightly smaller padding on smaller screens */
+        font-size: 0.8rem;
+    }
+}
+
+
+</style>
+</head>
+<body>
+
+    <!-- Include the header -->
+    {% include 'partials/header.html' %}
+
+   <div class="container mt-5">
+    <div class="reduce-container-size">
+    <h2 class="text-center mb-4">Chat With Horny Girls In Kampala</h2>
+    <p style="margin-bottom:50px;">Feeling lonely? Get nudes and talk to a horny girl who’s ready to spice up your day and bring your fantasies to life. Don’t wait—your escape is just a click away! . <b>Stay Anonymous</b></p>
+</div>
+
+
+   <!-- Lower nav champ  -->
+<nav class="nav-container">
+    <ul class="nav-bar">
+        <li class="nav-item1">
+            <a class="nav-link1" href="{% url 'profiles_list' %}?category=All">All</a>
+        </li>
+        <li class="nav-item1">
+            <a class="nav-link1" href="{% url 'profiles_list' %}?category=Escorts">Escorts</a>
+        </li>
+        <li class="nav-item1">
+            <a class="nav-link1" href="{% url 'profiles_list' %}?category=Sexting">Sexting</a>
+        </li>
+        <li class="nav-item1">
+            <a class="nav-link1" href="{% url 'profiles_list' %}?category=Romantic">Romantic</a>
+        </li>
+        <li class="nav-item1">
+            <a class="nav-link1" href="{% url 'profiles_list' %}?category=Girls">Girls</a>
+        </li>
+        <li class="nav-item1">
+            <a class="nav-link1" href="{% url 'profiles_list' %}?category=Guys">Guys</a>
+        </li>
+        <li class="nav-item1">
+            <a class="nav-link1" href="{% url 'profiles_list' %}?category=Friends">Friends</a>
+        </li>
+        <li class="nav-item1">
+            <a class="nav-link1" href="{% url 'profiles_list' %}?category=Dominant">Dominant</a>
+        </li>
+    </ul>
+</nav>
+
+
+
+
+
+ <!-- Profiles Display Section -->
+<div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
+    {% for profile in page_obj %}
+        <div class="col">
+            <a href="{% if subscription_status == 'no_payment' or subscription_status != 'active' and profile.pay %}#paymentModal{{ profile.id }}{% else %}{% url 'chat_with_profile' profile.id %}{% endif %}" 
+               class="text-decoration-none" 
+               data-bs-toggle="{% if subscription_status == 'no_payment' or subscription_status != 'active' and profile.pay %}modal{% else %}''{% endif %}" 
+               data-bs-target="#paymentModal{{ profile.id }}">
+                <div class="card position-relative">
+                    {% if profile.image %}
+                        <img src="{{ profile.image.url }}" class="card-img-top" alt="{{ profile.name }}">
+                    {% else %}
+                        <img src="{% static 'default-image.jpg' %}" class="card-img-top" alt="Default image">
+                    {% endif %}
+                    <div class="card-overlay">
+                        <h5 class="card-title">{{ profile.name }}</h5>
+                        <i class="fa-regular fa-eye icon-for-view"><span class="views-count"> {{ profile.views }}</span></i>
+                        <p class="card-text">{{ profile.description|slice:":200" }}...</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Modal for payment prompt -->
+        {% if subscription_status == 'no_payment' or subscription_status != 'active' and profile.pay %}
+        <div class="modal fade" id="paymentModal{{ profile.id }}" tabindex="-1" aria-labelledby="paymentModalLabel{{ profile.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 style="color:black" class="modal-title" id="paymentModalLabel{{ profile.id }}">Chat with this special person! 💬</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="color:black">
+                        Start chatting and gain premium features with a daily subscription of 5000 ugx. Don't miss out, click below to subscribe now!
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{% url 'flutterwave_payment' %}" class="btn btn-danger">Go to Payment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+
+<!-- Pagination Controls -->
+<center>
+<nav aria-label="Page navigation" class="mt-4">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" aria-disabled="true">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link">{{ num }}</a>
+                </li>
+            {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" aria-disabled="true">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+
+</div>
+</center>
+    <!-- Include the footer -->
+    {% include 'partials/footer.html' %}
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
