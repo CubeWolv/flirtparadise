@@ -60,21 +60,44 @@ def profiles_list(request):
 def chat_with_profile(request, profile_id):
     profile = get_object_or_404(Profile, id=profile_id)
 
-    model = genai.GenerativeModel(profile.api_model)  # Use the `api_model` field from the profile
+    # Fetch prompts from the profile
+    profile_prompts = profile.prompts
+
+    # Initialize the model with the profile's API model
+    model = genai.GenerativeModel(profile.api_model)
 
     if request.method == 'POST':
         user_input = request.POST.get('user_input', '')
 
+        # Get the chat history from the session, or initialize if it doesn't exist
+        chat_history = request.session.get(f'chat_history_{profile_id}', [])
+
+        # Add the current user input to the history (limit to last user input and bot response)
+        chat_history = [f"User: {user_input}"]
+
         try:
+            # Combine the profile's prompts with the current user input to provide focused context
+            prompt_with_context = f"{profile_prompts}\n" + "\n".join(chat_history) + "\nBot:"
+
+            # Generate a response based on the current context
             response = model.generate_content(
-                user_input,
+                prompt_with_context,
                 safety_settings={
                     HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
                     HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
                     HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
                 }
             )
-            return JsonResponse({'user_input': user_input, 'response': response.text})
+
+            # Get the bot's response and add it to the history
+            bot_response = response.text.strip()
+            chat_history.append(f"Bot: {bot_response}")
+
+            # Save the updated chat history to the session (only the latest user and bot messages)
+            request.session[f'chat_history_{profile_id}'] = chat_history
+
+            return JsonResponse({'user_input': user_input, 'response': bot_response})
+
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
 
