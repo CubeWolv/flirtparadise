@@ -24,15 +24,32 @@ def escorts(request):
     page_obj = paginator.get_page(page_number)  # Get the page object for the current page
     return render(request, './gender/escorts.html', {'page_obj': page_obj, 'city': None})
 
-def escorts_by_city(request, city):
-    # Filter escorts linked to the specific area
-    escorts = Escort.objects.filter(areas__name__iexact=city)
-    paginator = Paginator(escorts, 12)  # Paginate with 12 items per page
-    page_number = request.GET.get('page')  # Get current page number from query params
-    page_obj = paginator.get_page(page_number)  # Get the page object for the current page
-    return render(request, './gender/escorts.html', {'page_obj': page_obj, 'city': city})
+def escorts_by_city(request, city, sub_city=None):
+    city = city.lower() 
 
-    
+   
+    if sub_city:
+        sub_city = sub_city.lower()  # Ensure sub-city is lowercase
+        escorts = Escort.objects.filter(
+            city__iexact=city, 
+            areas__name__iexact=sub_city
+        )
+    else:
+        # If no sub_city, just filter by the major city
+        escorts = Escort.objects.filter(city__iexact=city)
+
+    paginator = Paginator(escorts, 12)  
+    page_number = request.GET.get('page')  
+    page_obj = paginator.get_page(page_number)  
+
+ 
+    return render(request, './gender/escorts.html', {
+        'page_obj': page_obj,
+        'city': city,
+        'sub_city': sub_city,
+    })
+
+
 def view_person(request, pk):
     escort = get_object_or_404(Escort.objects.prefetch_related('services'), pk=pk)  # Prefetch services for optimization
     return render(request, './gender/viewperson.html', {'escort': escort})

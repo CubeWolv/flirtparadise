@@ -18,7 +18,8 @@ def custom_sitemap_view(request, sitemaps):
 
 urlpatterns = [
     path('', views.escorts, name='escorts'),  # For all escorts
-    path('escorts/<str:city>/', views.escorts_by_city, name='escorts_by_city'),
+    path('escorts-from/<str:city>/<str:sub_city>-escorts/', views.escorts_by_city, name='escorts_by_city'),
+    path('escorts-from/<str:city>-escorts/', views.escorts_by_city, name='escorts_by_city_major'),
     path('payment/', views.flutterwave_payment, name='flutterwave_payment'),
     path('verify-payment/', views.verify_payment, name='verify_payment'),
     path('save-payment-data/', views.save_payment_data, name='save_payment_data'),

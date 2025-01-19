@@ -1,7 +1,7 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 from .models import  Escort, Area
-from aichat.models import Profile
+from .models import Profile
 
 class EscortSitemap(Sitemap):
     priority = 0.9
