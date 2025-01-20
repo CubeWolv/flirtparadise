@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     path('contactus', views.contact, name='contact'),
-    path('sitemaps/' ,views.sitemap ,name='sitemap'),
+    path('sitemaps.xml' ,views.sitemap ,name='sitemap'),
     path('robots.txt', views.robots_txt, name='robots_txt'),
 
 ]

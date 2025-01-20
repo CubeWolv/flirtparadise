@@ -25,6 +25,6 @@ urlpatterns = [
     path('save-payment-data/', views.save_payment_data, name='save_payment_data'),
     path('escort/<int:pk>/', views.view_person, name='view_person'),  # Generic profile view
     path('blog/', views.blog, name='blog'),
-    path('sitemap.xml', custom_sitemap_view, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    #path('sitemap.xml', custom_sitemap_view, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('<slug:blog_title>/', views.viewblog, name='viewblog'),
 ]
