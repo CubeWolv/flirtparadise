@@ -1,35 +1,20 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-from .models import  Escort, Area
-from .models import Profile
+from .models import Area, BlogPost
 
-class EscortSitemap(Sitemap):
-    priority = 0.9
-    changefreq = 'daily'
-
-    def items(self):
-        # Fetch all escorts without filtering by the 'verified' field
-        return Escort.objects.all()
-
-    def location(self, obj):
-        # Generate the URL for each escort's profile page
-        return reverse('view_person', kwargs={'pk': obj.pk})
-
-    def lastmod(self, obj):
-        # Optionally, you can return the last modified date
-        return obj.new_until  # Last modification date for the escort profile
-
-
-class ProfileSitemap(Sitemap):
+class BlogSitemap(Sitemap):
     priority = 0.7
     changefreq = 'weekly'
 
     def items(self):
-        return Profile.objects.all()
+        # Include only published blog posts
+        return BlogPost.objects.filter(is_published=True)
 
     def location(self, obj):
-        return reverse('profile_detail', kwargs={'pk': obj.pk})  # Adjust URL name as needed
+        return reverse('viewblog', kwargs={'blog_title': obj.slug})
 
+    def lastmod(self, obj):
+        return obj.updated_at
 
 class AreaSitemap(Sitemap):
     priority = 0.6
@@ -39,15 +24,18 @@ class AreaSitemap(Sitemap):
         return Area.objects.all()
 
     def location(self, obj):
-        return reverse('escorts_by_city', kwargs={'city': obj.name})
-
+        # Use 'escorts_by_city_major' if there's no sub_city, otherwise 'escorts_by_city'
+        if obj.name.lower() == "default-city-name":  # Replace with your default logic
+            return reverse('escorts_by_city_major', kwargs={'city': obj.name})
+        else:
+            return reverse('escorts_by_city', kwargs={'city': obj.name, 'sub_city': 'default-sub-city'})
 
 class StaticViewSitemap(Sitemap):
     priority = 0.8
     changefreq = 'daily'
 
     def items(self):
-        return ['contact', 'escorts', 'flutterwave_payment', 'verify_payment']
+        return ['contact', 'flutterwave_payment', 'verify_payment']
 
     def location(self, item):
         return reverse(item)

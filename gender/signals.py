@@ -1,7 +1,7 @@
 import requests
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .models import Escort  # Import remaining model
+from .models import BlogPost  # Import BlogPost model
 from django.conf import settings
 
 def ping_google():
@@ -16,13 +16,13 @@ def ping_google():
     except requests.exceptions.RequestException as e:
         print(f"Error pinging Google: {e}")
 
-@receiver(post_save, sender=Escort)
-def notify_google_of_new_post(sender, instance, created, **kwargs):
+@receiver(post_save, sender=BlogPost)
+def notify_google_of_new_blog(sender, instance, created, **kwargs):
     """
-    This signal is triggered when a new Escort is saved.
+    This signal is triggered when a new BlogPost is saved or updated.
     It notifies Google that the sitemap has been updated.
     """
-    if created:  # If it's a new post
+    if created and instance.is_published:  # Notify Google only if the blog is newly created and published
         ping_google()
-    else:  # If it's an update to an existing post
+    elif not created and instance.is_published:  # If it's an update to an already published blog
         ping_google()
