@@ -14,15 +14,32 @@ import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 from django.shortcuts import render, get_object_or_404
 
-# Create your views here.
+
 
 def escorts(request):
-    # Fetch all escorts
-    escorts = Escort.objects.all()
-    paginator = Paginator(escorts, 12)  # Paginate with 12 items per page
-    page_number = request.GET.get('page')  # Get current page number from query params
+    # Get the filter type from the query parameters (e.g., ?category=verified)
+    category = request.GET.get('category', 'all')  # Default to 'all'
+
+    # Fetch escorts based on the selected category
+    if category == 'verified':
+        escorts = Escort.objects.filter(verified=True).order_by('-premium')  # VIP escorts first
+    elif category == 'new':
+        escorts = Escort.objects.filter(is_new=True).order_by('-premium')  # VIP escorts first
+    elif category == 'vip':
+        escorts = Escort.objects.filter(premium=True)  # Only VIP escorts
+    else:  # Default to all escorts
+        escorts = Escort.objects.all().order_by('-premium')  # VIP escorts first
+
+    # Paginate the results (12 items per page)
+    paginator = Paginator(escorts, 12)
+    page_number = request.GET.get('page')  # Get the current page number
     page_obj = paginator.get_page(page_number)  # Get the page object for the current page
-    return render(request, './gender/escorts.html', {'page_obj': page_obj, 'city': None})
+
+    # Render the template with the filtered escorts and pagination
+    return render(request, './gender/escorts.html', {
+        'page_obj': page_obj,
+        'category': category,  # Pass the current category to the template
+    })
 
 def escorts_by_city(request, city, sub_city=None):
     city = city.lower() 

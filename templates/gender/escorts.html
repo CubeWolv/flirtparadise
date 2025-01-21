@@ -7,7 +7,17 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi, user-scalable=no">
-  <title>Ugandan Escorts | Kampala Escorts | Discrete Call Girls in Uganda for Hookups</title>
+  <title>
+    {% if city %}
+        {% if sub_city %}
+            Escorts from {{ sub_city|title }}, {{ city|title }}
+        {% else %}
+            Escorts from {{ city|title }}
+        {% endif %}
+    {% else %}
+        Ugandan Escorts | Kampala Escorts | Discrete Call Girls in Uganda for Hookups
+    {% endif %}
+</title>
   <link rel="profile" href="https://gmpg.org/xfn/11">
   
 <!-- Search Engine Optimization by Rank Math - https://rankmath.com/ -->
@@ -380,14 +390,69 @@
 
  <button id="toggleSidebarBtn" class="toggle-sidebar">Escorts near you</button>
    <div class="container mt-5">
-    <h1 class="text-center mb-4">Hook Up With Sexy Girls In Kampala</h1>
-
-
-
-<!-- CSS -->
 <style>
- 
+  .menu {
+      display: flex; /* Makes the items horizontal */
+      justify-content: right; /* Centers the menu on the page */
+      align-items: right; /* Vertically centers items */
+      background-color: transparent; /* Black background for the menu */
+      padding: 10px 0; /* Adds padding to the container */
+      list-style-type: none; /* Removes default list styles */
+      border-bottom: 1px solid #333; /* Subtle border for a clean look */
+    }
+        .menu li {
+            margin: 0 15px;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 10px 0; 
+        }
+        .menu li a {
+            text-decoration: none;
+            color: inherit;
+            padding: 10px 15px;
+        }
+        .menu li.active {
+            color: #000;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        .menu li:hover {
+            background-color: #fff;
+            color: #000;
+            border-radius: 5px;
+        }
 </style>
+
+ {% if city %}
+        {% if sub_city %}
+           <h1> Escorts from {{ sub_city|title }}, {{ city|title }}</h1>
+        {% else %}
+            <h1>Escorts from {{ city|title }}</h1>
+        {% endif %}
+    {% else %}
+        <h1>Escorts in Uganda | Explore Our Escorts</h1>
+    {% endif %}
+
+<ul class="menu">
+    <li class="{% if category == 'all' %}active{% endif %}">
+        <a href="?category=all">All</a>
+    </li>
+    <li class="{% if category == 'verified' %}active{% endif %}">
+        <a href="?category=verified">Verified</a>
+    </li>
+    <li class="{% if category == 'new' %}active{% endif %}">
+        <a href="?category=new">New</a>
+    </li>
+    <li class="{% if category == 'vip' %}active{% endif %}">
+        <a href="?category=vip">VIP</a>
+    </li>
+</ul>
+
+
+
+
+
 <!-- Girls Display Section -->
 <div class="row row-cols-2 row-cols-md-4 g-4 justify-content-center">
     {% for escort in page_obj %}
