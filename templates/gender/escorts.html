@@ -401,16 +401,20 @@
  <button id="toggleSidebarBtn" class="toggle-sidebar">Escorts near you</button>
    <div class="container mt-5">
 <style>
-  .menu {
-      display: flex; /* Makes the items horizontal */
-      justify-content: right; /* Centers the menu on the page */
-      align-items: right; /* Vertically centers items */
-      background-color: transparent; /* Black background for the menu */
-      padding: 10px 0; /* Adds padding to the container */
-      list-style-type: none; /* Removes default list styles */
-      border-bottom: 1px solid #333; /* Subtle border for a clean look */
-      width:100%;
-    }
+.menu {
+  display: flex;
+  justify-content: flex-end;    /* Align items to the right */
+  align-items: center;
+  background-color: transparent;
+  padding: 10px 0;
+  list-style-type: none;
+  border-bottom: 1px solid #333;
+
+  width: fit-content;          /* Only fit the content inside */
+  margin-left: auto;           /* Push to the right side of container */
+}
+
+
         .menu li {
             margin: 0 15px;
             color: #ddd;
