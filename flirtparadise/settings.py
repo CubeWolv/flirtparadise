@@ -27,8 +27,7 @@ SECRET_KEY = 'django-insecure-pqv%pn&&47i71hx#vkt7(d!0d$asx^*-z!_u3w$sg&)!s9@c58
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'flirtparadise-production.up.railway.app',
-    'https://flirtparadise-production.up.railway.app',
+    'flirtparadise-production.up.railway.app'
     '127.0.0.1',
     'localhost',
     'flirtparadise.xyz'
@@ -36,7 +35,8 @@ ALLOWED_HOSTS = [
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://flirtparadise.xyz'
+    'https://flirtparadise.xyz',
+    'https://flirtparadise-production.up.railway.app'
 ]
 
 
