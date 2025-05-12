@@ -403,15 +403,28 @@
 <style>
 .menu {
   display: flex;
-  justify-content: flex-end;    /* Align items to the right */
+  justify-content: flex-end;
   align-items: center;
   background-color: transparent;
   padding: 10px 0;
   list-style-type: none;
   border-bottom: 1px solid #333;
+  
+  max-width: 100%;         /* Prevents it from overflowing screen */
+  overflow-x: auto;        /* Allows scroll if content is wider */
+  box-sizing: border-box;  /* Includes padding in width */
+}
 
-  width: fit-content;          /* Only fit the content inside */
-  margin-left: auto;           /* Push to the right side of container */
+/* Optional: Hide scrollbar but still allow scrolling if needed */
+.menu::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
 
