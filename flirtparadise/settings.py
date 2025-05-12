@@ -44,7 +44,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = False
 
-SITE_URL = "https://flirtparadise.xyz"
+SITE_URL = "https://ugandaeliteescort.com"
 # Application definition
 
 INSTALLED_APPS = [
