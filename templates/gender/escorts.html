@@ -195,6 +195,7 @@
           color:silver;
         }
 
+
         @media (max-width: 768px) {
           .fa-chevron-down{
             left:85%;
@@ -408,6 +409,7 @@
       padding: 10px 0; /* Adds padding to the container */
       list-style-type: none; /* Removes default list styles */
       border-bottom: 1px solid #333; /* Subtle border for a clean look */
+      width:100%;
     }
         .menu li {
             margin: 0 15px;
@@ -440,10 +442,10 @@
             <h1>Escorts from {{ city|title }}</h1>
         {% endif %}
     {% else %}
-        <h1>Escorts in Uganda | Explore Our Escorts</h1>
+        <h1 style="margin-top:25px;">Escorts in Uganda | Explore Our Escorts</h1>
     {% endif %}
 
-<ul class="menu">
+<ul class="menu" style="margin-bottom: 35px;">
     <li class="{% if category == 'all' %}active{% endif %}">
         <a href="?category=all">All</a>
     </li>
@@ -460,7 +462,52 @@
 
 
 
+<style>
+     .card {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
 
+        .card-img-top {
+            object-fit: cover;
+            height: 350px;
+              aspect-ratio: 3/4;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .card-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: silver;
+            display: -webkit-box; 
+            -webkit-line-clamp: 2; /* Limits to two lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+</style>
 
 <!-- Girls Display Section -->
 <div class="row row-cols-2 row-cols-md-4 g-4 justify-content-center">
