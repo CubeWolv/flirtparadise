@@ -30,12 +30,12 @@ ALLOWED_HOSTS = [
     'flirtparadise-production.up.railway.app',
     '127.0.0.1',
     'localhost',
-    'flirtparadise.xyz'
+    'ugandaeliteescort.com'
 ]
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://flirtparadise.xyz',
+    'https://ugandaeliteescort.com',
     'https://flirtparadise-production.up.railway.app'
 ]
 
