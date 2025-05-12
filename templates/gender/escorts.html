@@ -40,7 +40,12 @@
 <meta name="twitter:description" content="Meet verified Ugandan escorts and sexy call girls for massages, sex, and hookups. Book top escorts in Kampala for discreet services with the best escorts in Uganda.">
 <meta name="twitter:site" content="@FlirtParadiseUganda">
 <meta name="twitter:image" content="https://flirtparadise.xyz/wp-content/uploads/2021/07/Fb_Op3.png">
+<body style="visibility: hidden;" onload="document.body.style.visibility='visible';">
 
+<!-- Bootstrap CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all';">
+
+<link href="{% static './bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="print" onload="this.media='all';">
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L3FC3K5Z2"></script>
@@ -165,10 +170,7 @@
 :root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
 </style>
 
-    <!-- Bootstrap CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all';">
-
-<link href="{% static './bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="print" onload="this.media='all';">
+    
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
@@ -179,6 +181,13 @@
     
     <!-- Inline Styles (if necessary) -->
     <style>
+        body {
+            background: #F6F4F0 /* Dark and sleek background */
+            color:red;
+            font-family: 'Poppins', sans-serif;
+            background-attachment: fixed;
+            background-size: cover;
+        }
         .fa-chevron-down{
           position: absolute;
           left:85%;
@@ -191,11 +200,11 @@
             left:85%;
           }
         }
+
     </style>
 </head>
 <body>
 
-<body>
 
     <!-- Include the header -->
     {% include 'partials/header.html' %}
@@ -539,7 +548,7 @@
 </nav>
 </div>
 </div>
-    <!-- Include the footer -->
+  <!-- Include the footer -->
     {% include 'partials/footer.html' %}
 
     <!-- Bootstrap JS and Popper.js -->
