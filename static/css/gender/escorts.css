@@ -49,10 +49,6 @@
             position: relative;
         }
 
-        .card-img-top {
-            object-fit: cover;
-            height: 350px;
-        }
 
         .card-overlay {
             position: absolute;
@@ -329,15 +325,8 @@ h1 {
     width:95%;
     height:auto;
   }
-  .card-img-top {
-            height: 300px;
-        }
-        .right-content {
-    position:absolute;
-    bottom:0px;
-    right:0px;
-    font-size:10px;
-}
+
+
 
 .badge {
     display: inline-block;
@@ -418,73 +407,3 @@ h1 {
         }
     }
 
-    .premium-badge {
-    position: absolute;
-    top: 16px; /* Adjust the top position to 'hang' the badge */
-    right: -5px; /* Adjust the right position for the angled look */
-    background-color: #ffa500; /* Orange background to match the "Premium" badge in your image */
-    color: #fff; /* White text */
-    font-size: 12px; /* Adjust font size */
-    font-weight: bold;
-    padding: 5px 10px; /* Padding for the badge text */
-    transform: rotate(45deg); /* Rotate the badge to hang off the corner */
-    z-index: 10; /* Ensure it appears above other elements */
-    border-radius: 4px; /* Slightly round the edges */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
-    text-align: center;
-}
-
-.card-overlay {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-}
-
-.left-content {
-    flex: 1; /* Take up available space */
-}
-
-.right-content {
-    display: flex;
-    flex-direction: column; /* Stack badges vertically */
-    align-items: flex-end;
-}
-
-.badge {
-    display: inline-block;
-    font-size: 0.8rem;
-    font-weight: bold;
-    padding: 4px 8px;
-    border-radius: 4px;
-    margin-bottom: 4px;
-    color: white;
-}
-
-.badge-new {
-    background-color: #D8BFD8; /* Light Purple (Thistle) */
-    color: #4B0082; /* Indigo text for contrast */
-}
-
-.badge-verified {
-    background-color: #32CD32; /* Lime Green */
-    color: white; /* White text for clarity */
-}
-
-@media (max-width: 768px) {
-
-  .card-img-top {
-            height: 300px;
-        }
-        .right-content {
-    position:absolute;
-    bottom:5px;
-    right:0px;
-}
-
-.badge {
-    display: inline-block;
-    font-size: 0.6rem;
-    font-weight: lighter;
-    padding: 2px 6px;
-}
-}
