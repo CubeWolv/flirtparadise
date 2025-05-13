@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Access Payment</title>
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #181818; /* Dark background for a modern feel */
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #9b59b6; /* Soft purple */
+            margin-bottom: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+         .container {
+            background: #1f1f1f;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .input-field {
+            margin: 20px 0;
+        }
+
+        .input-field label {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #ccc;
+            text-align: left;
+            font-weight: 400;
+        }
+
+        .input-field input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #444;
+            border-radius: 10px;
+            background: #333;
+            color: #fff;
+            font-size: 1.1rem;
+            margin-top: 5px;
+            margin-left:-16px;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .input-field input:focus {
+            background-color: #444;
+            border-color: #9b59b6; /* Purple border on focus */
+            outline: none;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #6c5ce7, #9b59b6); /* Purple gradient */
+            color: #fff;
+            padding: 18px 26px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            width: 100%;
+            margin-top: 25px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #9b59b6, #6c5ce7);
+            transform: translateY(-4px); /* Hover effect */
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: #888;
+        }
+
+        .footer a {
+            color: #9b59b6;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+          @media screen and (max-width: 768px) {
+        h1 {
+            font-size: 2rem; /* Smaller heading on mobile */
+            margin-bottom: 20px;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 90%; /* Ensure the container is responsive */
+            box-shadow: none; /* Remove shadow for a simpler look */
+        }
+
+        .input-field input {
+            padding: 12px; /* Adjust input padding */
+            font-size: 1rem; /* Smaller font size for input fields */
+        }
+
+        .btn {
+            padding: 14px 20px; /* Smaller padding for buttons */
+            font-size: 1.1rem; /* Adjust button text size */
+        }
+
+        .footer {
+            font-size: 0.85rem; /* Smaller font size for footer */
+        }
+
+        .footer a {
+            font-size: 1rem; /* Adjust font size for footer links */
+        }
+    }
+
+    /* Additional mobile styling for very small screens (portrait phones) */
+    @media screen and (max-width: 480px) {
+        h1 {
+            font-size: 1.6rem; /* Further reduce heading size */
+        }
+
+        .container {
+            padding: 15px; /* Reduce padding for small screens */
+        }
+
+        .input-field input {
+            padding: 10px; /* Adjust padding to fit smaller screens */
+        }
+
+        .btn {
+            font-size: 1rem; /* Adjust button text for very small screens */
+        }
+    }
+    </style>
+</head>
+<body>
+    <h1>Access Premium Content</h1>
+    <div class="container">
+        <form id="paymentForm" method="POST" action="/save-payment-data/">
+            {% csrf_token %}
+            <p style="color: #ddd; font-size: 1.1rem;">Access chats, nudes, and other premium content at UGX 5000 daily</p>
+            
+            <div class="input-field">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" value="{{ user.username }}" readonly>
+            </div>
+            <div class="input-field">
+                <label for="phone_number">Phone Number</label>
+                <input type="tel" id="phone_number" name="phone_number" placeholder="Enter your phone number" required>
+            </div>
+
+            <button type="button" class="btn" id="makePayment">Pay UGX 5000</button>
+        </form>
+        <div class="footer">
+            <p>Secured by <a href="https://flutterwave.com" target="_blank">Flutterwave</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('makePayment').addEventListener('click', function () {
+            const tx_ref = `daily-access-${Date.now()}`; // Generate a unique transaction reference
+
+            // Collect form data
+            const username = document.getElementById('username').value;
+            const phone_number = document.getElementById('phone_number').value;
+
+            // Save payment data in the backend before initiating Flutterwave
+            fetch('/save-payment-data/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    phone_number: phone_number
+                })
+            }).then(response => response.json())
+              .then(data => {
+                  // Initiate the Flutterwave payment
+                  FlutterwaveCheckout({
+                      public_key: "FLWPUBK-4225c1b8ecf3c450bf97b9a860c010a6-X", // Replace with your public key
+                      tx_ref: tx_ref,
+                      amount: 5000, // Amount to charge
+                      currency: "UGX", // Currency
+                      payment_options: "card, mobilemoneyuganda, ugx", // Mobile Money option for Uganda
+                      redirect_url: "/", // URL to redirect to after successful payment
+                      meta: {
+                          consumer_id: 23, // Optional, your user ID or any identifier
+                          consumer_mac: "92a3-912ba-1192a", // Optional, unique transaction identifier
+                      },
+                      customer: {
+                          email: "user@example.com", // Customer's email
+                          phone_number: phone_number, // Customer's phone number
+                          name: username, // Customer's name
+                      },
+                      customizations: {
+                          title: "Daily Subscription", // Title for the payment process
+                          description: "Access premium content for one day", // Description of the payment
+                          logo: "https://via.placeholder.com/150", // Your logo URL
+                      },
+                      onclose: function() {
+                          alert('Payment closed.');
+                      },
+                      callback: function(data) {
+                          console.log(data); // Optionally log the payment response
+                          // Redirect to success page after successful payment
+                          window.location.href = "/payment-success";
+                      }
+                  });
+              })
+              .catch(error => {
+                  alert('Error saving payment data');
+              });
+        });
+    </script>
+</body>
+</html>
