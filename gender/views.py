@@ -42,29 +42,24 @@ def escorts(request):
     })
 
 def escorts_by_city(request, city, sub_city=None):
-    city = city.lower() 
+    city = city.lower()
+    escorts = Escort.objects.filter(city__iexact=city)
 
-   
     if sub_city:
-        sub_city = sub_city.lower()  # Ensure sub-city is lowercase
-        escorts = Escort.objects.filter(
-            city__iexact=city, 
-            areas__name__iexact=sub_city
-        )
-    else:
-        # If no sub_city, just filter by the major city
-        escorts = Escort.objects.filter(city__iexact=city)
+        sub_city_clean = sub_city.replace('-escorts', '').replace('-', ' ')
+        escorts = escorts.filter(areas__name__icontains=sub_city_clean)
 
-    paginator = Paginator(escorts, 12)  
-    page_number = request.GET.get('page')  
-    page_obj = paginator.get_page(page_number)  
+    paginator = Paginator(escorts, 12)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
- 
     return render(request, './gender/escorts.html', {
         'page_obj': page_obj,
         'city': city,
         'sub_city': sub_city,
     })
+
+
 
 
 def view_person(request, pk):

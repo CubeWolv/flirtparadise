@@ -17,25 +17,32 @@ class BlogSitemap(Sitemap):
         return obj.updated_at
 
 class AreaSitemap(Sitemap):
-    priority = 0.6
+    priority = 0.8
     changefreq = 'weekly'
 
     def items(self):
-        return Area.objects.all()
+        return Area.objects.all()  # Fetch all areas
 
     def location(self, obj):
-        # Use 'escorts_by_city_major' if there's no sub_city, otherwise 'escorts_by_city'
-        if obj.name.lower() == "default-city-name":  # Replace with your default logic
-            return reverse('escorts_by_city_major', kwargs={'city': obj.name})
+        # Normalize the area name and create URLs for both city and sub-city
+        parts = [part.strip().lower().replace(' ', '-') for part in obj.name.split(',')]
+
+        if len(parts) == 1:
+            # Only city: link to the major city view
+            return reverse('escorts_by_city_major', kwargs={'city': parts[0]})
+        elif len(parts) == 2:
+            # City + Sub-city: link to full city/sub-city page
+            return reverse('escorts_by_city', kwargs={'city': parts[0], 'sub_city': f"{parts[1]}-escorts"})
         else:
-            return reverse('escorts_by_city', kwargs={'city': obj.name, 'sub_city': 'default-sub-city'})
+            # Handle invalid or unexpected data
+            return '/'
 
 class StaticViewSitemap(Sitemap):
     priority = 0.8
     changefreq = 'daily'
 
     def items(self):
-        return ['contact', 'flutterwave_payment', 'verify_payment']
+        return ['escorts','blog','contact', 'flutterwave_payment', 'verify_payment']
 
     def location(self, item):
         return reverse(item)

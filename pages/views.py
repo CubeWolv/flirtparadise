@@ -8,10 +8,10 @@ def contact(request):
     return render(request, './pages/contact.html')
 
 
-def sitemap(request):
-  response = render(request, './sitemap.xml')
-  response['Content-Type'] = 'application/xml'
-  return response
+#def sitemap(request):
+#  response = render(request, './sitemap.xml')
+#  response['Content-Type'] = 'application/xml'
+#  return response
 
 def robots_txt(request):
     # Path to your robots.txt file in the static directory
