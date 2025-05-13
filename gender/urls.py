@@ -12,6 +12,9 @@ sitemaps_dict = {
 }
 
 
+
+
+
 urlpatterns = [
     path('', views.escorts, name='escorts'),  # For all escorts
     path('escorts-from/<city>/', views.escorts_by_city, name='escorts_by_city_major'),
