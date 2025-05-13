@@ -175,7 +175,8 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{% static 'images/flirtparadiselogo(1).png' %}">
+    <link rel="icon" href="{% static 'images/flirtparadiselogo1.png' %}" type="image/png">
+<link rel="shortcut icon" href="{% static 'images/flirtparadiselogo1.png' %}" type="image/png">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static './css/gender/escorts.css' %}">
     
@@ -567,9 +568,9 @@
 }
 
 .right-content {
-    display: flex;
-    flex-direction: column; /* Stack badges vertically */
-    align-items: flex-end;
+    position: absolute;
+    top: 10%; /* Adjust the top position to 'hang' the badge */
+    margin-right: 10px;
 }
 
 .badge {
@@ -631,6 +632,13 @@
             Premium
         </div>
     {% endif %}
+        <!-- Right content -->
+    <div class="right-content text-end">
+        {% if escort.is_new %}
+            <span class="badge badge-new">NEW</span>
+        {% endif %}
+       
+    </div>
 
            
                
@@ -664,13 +672,7 @@
         </p>
     </div>
 
-    <!-- Right content -->
-    <div class="right-content text-end">
-        {% if escort.is_new %}
-            <span class="badge badge-new">NEW</span>
-        {% endif %}
-       
-    </div>
+
 </div>
 
             </div>
