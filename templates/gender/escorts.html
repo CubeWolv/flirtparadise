@@ -460,6 +460,9 @@
             color: #000;
             border-radius: 5px;
         }
+
+
+
 </style>
 
  {% if city %}
@@ -498,7 +501,7 @@
 
         .card-img-top {
             object-fit: cover;
-            height: 350px;
+            height: 385px;
               aspect-ratio: 3/4;
   object-fit: cover;
   width: 100%;
@@ -534,6 +537,86 @@
             text-overflow: ellipsis;
         }
 
+
+
+
+            .premium-badge1 {
+    position: absolute;
+    top: 5px; /* Adjust the top position to 'hang' the badge */
+    right: 4px; /* Adjust the right position for the angled look */
+    border:1px solid orange;
+    color: #fff; /* White text */
+    font-size: 9px; /* Adjust font size */
+    font-weight: bold;
+    padding: 3px 8px; /* Padding for the badge text */
+    z-index: 10; /* Ensure it appears above other elements */
+    border-radius: 4px; /* Slightly round the edges */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+    text-align: center;
+    color:orange;
+}
+
+.card-overlay {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.left-content {
+    flex: 1; /* Take up available space */
+}
+
+.right-content {
+    display: flex;
+    flex-direction: column; /* Stack badges vertically */
+    align-items: flex-end;
+}
+
+.badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    color: white;
+}
+
+.badge-new {
+    background-color: #D8BFD8; /* Light Purple (Thistle) */
+    color: #4B0082; /* Indigo text for contrast */
+    
+}
+
+.badge-verified {
+    background-color: transparent; /* Lime Green */
+    color:  lime; /* White text for clarity */
+}
+
+@media (max-width: 768px) {
+        .right-content {
+    position:absolute;
+    bottom:50%;
+    right:0px;
+}
+
+.badge {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: lighter;
+    padding: 2px 6px;
+    margin-bottom:25%;
+}
+ .card-title {
+            font-size: 14px;
+        }
+  .card-img-top {
+            height: 250px;
+        }
+}
+
+
+
 </style>
 
 <!-- Girls Display Section -->
@@ -544,7 +627,7 @@
                 <!-- Premium Badge -->
                 
                     {% if escort.premium %}
-        <div class="premium-badge position-absolute">
+        <div class="premium-badge1 position-absolute">
             Premium
         </div>
     {% endif %}
@@ -565,7 +648,9 @@
     <!-- Left content -->
     <div class="left-content">
         <h5 class="card-title">
-            <a href="{% url 'view_person' pk=escort.pk %}" class="text-decoration-none text-white">{{ escort.name }}</a>
+            <a href="{% url 'view_person' pk=escort.pk %}" class="text-decoration-none text-white">{{ escort.name }}</a> {% if escort.verified %}
+            <span class="badge-verified"><i class="fa-regular fa-circle-check"></i></span>
+        {% endif %}
         </h5>
         <p class="card-text">
             {% if escort.areas.exists %}
@@ -584,9 +669,7 @@
         {% if escort.is_new %}
             <span class="badge badge-new">NEW</span>
         {% endif %}
-        {% if escort.verified %}
-            <span class="badge badge-verified">VERIFIED</span>
-        {% endif %}
+       
     </div>
 </div>
 
