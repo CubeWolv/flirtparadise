@@ -107,6 +107,8 @@
     display: inline-flex; /* Align items in a row */
     justify-content: center;
     list-style: none; /* Remove bullet points */
+    margin-top:20px;
+    margin-bottom:40px;
 }
 
 .pagination .page-item {
